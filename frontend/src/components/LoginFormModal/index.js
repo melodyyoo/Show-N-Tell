@@ -44,7 +44,6 @@ function LoginFormModal() {
 
   return (
     <div className="login-modal">
-      <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
           {errors.credential && (
             <p className="errors">{errors.credential}</p>

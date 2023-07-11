@@ -45,7 +45,7 @@ function ProfileButton({ user }) {
 
   return (
     <div ref={ulRef} style={{ display: "flex", justifyContent: "flex-end" }}>
-    <OpenModalButton buttonText="SIGN IN" modalComponent={<LoginFormModal/>} />
+    <OpenModalButton buttonText="SIGN IN" modalComponent={<LoginFormModal/>} title="SIGN IN"/>
     <OpenModalButton buttonText="CREATE ACCOUNT" modalComponent={<SignupFormModal/>}/>
       {showMenu && (
         <div>

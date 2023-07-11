@@ -20,6 +20,33 @@
 
   #modal-content {
     position: absolute;
-    background-color: white;
-    border-radius: 20px;
+    background-color: #435666;
+    border-radius: 5px;
+  }
+
+  .modal-header{
+    display:flex;
+    justify-content: space-between;
+    margin: 0 15px;
+  }
+
+  .modal-header-title{
+   font-family:'Open Sans', sans-serif;
+   margin-left: 50px;
+   color: #778899; 
+  }
+
+  .x-button{
+    position: relative;
+    top: 13px;
+    stroke: #778899;
+    stroke-width: 3;
+    cursor:pointer;
+    width: 25px;
+    height: 25px;
+    margin-left: 10px;
+  }
+
+  .x-button:hover{
+    stroke: #CCDDEE;
   }
