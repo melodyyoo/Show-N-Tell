@@ -1,0 +1,95 @@
+.hidden {
+  display: none;
+}
+
+.user-info {
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0px 0px 13px 1px #000000aa;
+  padding: 0px 10px 0px 10px;
+  margin: 40px 10px 0 0;
+}
+
+.logged-out-modal {
+  width: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.logged-out-button {
+  display: flex;
+  justify-content: center;
+}
+
+.manage-spots,
+.manage-reviews {
+  all: unset;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  top: -15px;
+}
+.manage-spots {
+  margin-bottom: 8px;
+}
+
+.email {
+  text-align: center;
+  position: relative;
+  top: -20px;
+  border-bottom: solid rgb(175, 175, 175);
+  padding-bottom: 20px;
+}
+
+.log-out-button {
+  position: relative;
+  top: -9px;
+  border-radius: 20px;
+  height: 2rem;
+  width: 4rem;
+  background-color: var(--app-color);
+  border-color: var(--app-color);
+}
+
+/* .open-modal-button{
+    all:unset;
+
+} */
+
+.profile-button {
+  border: 1px solid rgb(0, 0, 0);
+  height: 2.5rem;
+  width: 4rem;
+  border-radius: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.menu-icon {
+  padding-left: 8px;
+}
+
+.logo-link {
+  font-weight: 400;
+  text-decoration: none;
+  color: white;
+  font-size: 30px;
+  display: flex;
+  margin-left: 35px;
+  width: 250px;
+}
+
+.login{
+   position: relative;
+   bottom: -5px;
+}
+
+.signup{
+    position:relative;
+    top: -5px;
+}
