@@ -1,0 +1,43 @@
+.signup-modal {
+  width: 25rem;
+  border-radius: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1rem;
+}
+
+.submit-button{
+    margin-bottom: 2rem;
+    width: 10rem;
+    height: 2rem;
+    box-shadow: 4px 4px 5px rgb(151, 150, 150);
+    background-color: var(--app-color);
+    border-radius: 10px;
+    cursor:pointer; 
+}
+
+.submit-button:disabled{
+    width: 10rem;
+    height: 2rem;
+    background-color: white;
+}
+
+h1 {
+  text-align: center;
+}
+
+input {
+  margin-left: 7px;
+  display: flex;
+  justify-content: center;
+  width: 15rem
+}
+
+.errors{
+    font-size: 13px;
+    text-align: center;
+}

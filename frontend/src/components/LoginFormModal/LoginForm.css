@@ -1,0 +1,35 @@
+.login-modal{
+    width: 24rem;
+}
+
+
+input{
+    width: 18rem;
+}
+
+.demo-user-button{
+    margin-bottom: 2rem;
+    width: 10rem;
+    height: 2rem;
+    border-radius: 10px;
+    background-color: var(--app-color);
+    cursor:pointer;
+    border-color: var(--app-color);
+    box-shadow: 4px 4px 5px #979696;
+}
+.log-in-button{
+    width: 10rem;
+    height: 2rem;
+    box-shadow: 4px 4px 5px rgb(151, 150, 150);
+    background-color: var(--app-color);
+    border-radius: 10px;
+    cursor:pointer;
+    border-color: var(--app-color)
+}
+
+.log-in-button:disabled{
+    width: 10rem;
+    height: 2rem;
+    background-color: white;
+    border-color: white
+}
