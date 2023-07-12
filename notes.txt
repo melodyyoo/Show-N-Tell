@@ -1,0 +1,7 @@
+Genres:
+-Horror
+-Sitcom
+-Reality TV
+-Romance
+-Drama
+-Family
