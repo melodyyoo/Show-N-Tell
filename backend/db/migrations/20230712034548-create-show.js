@@ -61,7 +61,7 @@ module.exports = {
     }, options);
 
     options.tableName = "Shows"
-    await queryInterface.addConstraint("Shows", {
+    await queryInterface.addConstraint(options, {
       fields: ['name', 'director'],
       type: "unique",
       name: "unique-director-show"
@@ -69,6 +69,6 @@ module.exports = {
   },
   async down(queryInterface, Sequelize) {
     options.tableName = "Shows"
-    await queryInterface.dropTable('Shows');
+    await queryInterface.dropTable(options);
   }
 };
