@@ -26,7 +26,7 @@ module.exports = {
         allowNull:false
       },
       year: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull:false
       },
       director: {
