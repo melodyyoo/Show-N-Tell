@@ -1,11 +1,11 @@
 'use strict';
 
+
+/** @type {import('sequelize-cli').Migration} */
 let options = {};
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;
 }
-
-/** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
     /**
@@ -219,7 +219,7 @@ module.exports = {
       synopsis: "An anthology series centering on different characters and locations, including a house with a murderous past, an insane asylum, a witch coven, a freak show circus, a haunted hotel, a possessed farmhouse, a cult, the apocalypse, a slasher summer camp, a bleak beach town and desert valley, and NYC.",
       userId:5
     }
-   ])
+   ], {})
   },
 
   async down (queryInterface, Sequelize) {
@@ -229,5 +229,7 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    options.tableName = "Shows"
+    await queryInterface.bulkDelete(options)
   }
 };

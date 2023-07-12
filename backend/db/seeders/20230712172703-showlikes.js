@@ -1,12 +1,10 @@
 'use strict';
 
+/** @type {import('sequelize-cli').Migration} */
 let options = {};
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;
 }
-
-
-/** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
     /**
@@ -212,7 +210,7 @@ module.exports = {
         showId: 20,
         userId:6
       }
-    ])
+    ],{})
   },
 
   async down (queryInterface, Sequelize) {
@@ -222,5 +220,7 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    options.tableName = "ShowLikes"
+    await queryInterface.bulkDelete(options)
   }
 };
