@@ -64,17 +64,17 @@ module.exports = {
     );
 
     // options.tableName = "Shows"
-    await queryInterface.addConstraint("Shows", {
-      fields: ["name", "director"],
-      type: "unique",
-      name: "unique-director-show",
-      references: {
-        table: {
-          tableName: "Shows",
-          schema: process.env.SCHEMA,
-        },
-      },
-    });
+    // await queryInterface.addConstraint("Shows", {
+    //   fields: ["name", "director"],
+    //   type: "unique",
+    //   name: "unique-director-show",
+    //   references: {
+    //     table: {
+    //       tableName: "Shows",
+    //       schema: process.env.SCHEMA,
+    //     },
+    //   },
+    // });
   },
   async down(queryInterface, Sequelize) {
     options.tableName = "Shows";
