@@ -60,11 +60,15 @@ module.exports = {
       }
     }, options);
 
-    options.tableName = "Shows"
-    await queryInterface.addConstraint(options, {
+    // options.tableName = "Shows"
+    await queryInterface.addConstraint("Shows", {
       fields: ['name', 'director'],
       type: "unique",
-      name: "unique-director-show"
+      name: "unique-director-show",
+      references: {
+        tableName: "Shows",
+        schema: process.env.SCHEMA
+      }
     })
   },
   async down(queryInterface, Sequelize) {
