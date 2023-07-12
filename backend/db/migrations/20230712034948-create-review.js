@@ -17,6 +17,10 @@ module.exports = {
         type: Sequelize.DATEONLY,
         allowNull:false
       },
+      rating: {
+        type: Sequelize.INTEGER,
+        allowNull:false
+      },
       showId: {
         type: Sequelize.INTEGER,
         references:{model:"Shows"},

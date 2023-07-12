@@ -35,6 +35,14 @@ module.exports = (sequelize, DataTypes) => {
         isDate:true
       }
     },
+    rating:{
+      type:DataTypes.INTEGER,
+      allowNull:false,
+      validate:{
+        min: 1,
+        max: 5
+      }
+    },
     showId: DataTypes.INTEGER,
     userId: DataTypes.INTEGER
   }, {
