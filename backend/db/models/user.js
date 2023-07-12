@@ -11,8 +11,19 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      User.hasMany(models.Comment, {foreignKey:"userId", onDelete:"cascade", hooks:true})
 
+      User.hasMany(models.Profile, {foreignKey:"userId", onDelete:"cascade", hooks:true})
 
+      User.hasMany(models.Show, {foreignKey:"userId", onDelete:"cascade", hooks:true})
+
+      User.hasMany(models.Review, {foreignKey:"userId", onDelete:"cascade", hooks:true})
+
+      User.hasMany(models.ShowLike, {foreignKey:"userId", onDelete:"cascade", hooks:true})
+
+      User.hasMany(models.ReviewLike, {foreignKey:"userId", onDelete:"cascade", hooks:true})
+
+      User.hasOne(models.Profile, {foreignKey: 'userId'})
     }
   }
   User.init({
@@ -33,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull:false,
       validate:{
-        len:[3,256],
+        len:[6,256],
         isEmail:true
       }
     },
