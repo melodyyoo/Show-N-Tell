@@ -1,0 +1,21 @@
+.poster-wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+.poster{
+    max-height: 250px;
+    max-width: 200px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.poster:hover{
+    border: 3px rgb(2, 181, 2) solid;
+}
+
+.poster-stats{
+    display: flex;
+    justify-content: center;
+    gap: 25px
+}
