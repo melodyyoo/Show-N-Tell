@@ -39,59 +39,35 @@ function ProfileButton({ user }) {
     history.push("/");
   };
 
-
-
   // const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
   return (
     <div ref={ulRef} style={{ display: "flex", justifyContent: "flex-end" }}>
-    <OpenModalButton buttonText="SIGN IN" modalComponent={<LoginFormModal/>} title="SIGN IN"/>
-    <OpenModalButton buttonText="CREATE ACCOUNT" modalComponent={<SignupFormModal/>}/>
-      {showMenu && (
+      {
         <div>
           {user ? (
-            <div className="user-info" style={{ position: "absolute", right: 0}}>
-              <p style={{ textAlign:'center'}}>
-                Hello, {user.firstName}
-              </p>
-              <p className="email">{user.email}</p>
-              <button
-                className="manage-spots"
-                onClick={(e) => history.push("/spots/current")}
-              >
-                Manage Spots
-              </button>
-              <button
-                className="manage-reviews"
-                onClick={(e) => history.push("/reviews/current")}
-              >
-                Manage Reviews
-              </button>
-              <p style={{textAlign:'center'}}>
-                <button style={{cursor: 'pointer'}} className="log-out-button" onClick={logout}>Log Out</button>
+            <div>
+              <p style={{ cursor: "pointer" }} className="log-out-button" onClick={logout}>
+                Log Out
               </p>
             </div>
           ) : (
-            <div className="menu-buttons user-info logged-out-modal" style={{ position: "absolute", right: 0 }}>
-              <p className='logged-out-button login'>
-                <OpenModalButton
-                  buttonText="Log In"
-                  onButtonClick={closeMenu}
-                  modalComponent={<LoginFormModal />}
-                />
-              </p>
-              <p className='logged-out-button signup'>
-                <OpenModalButton
-                  className="open-modal-button"
-                  buttonText="Sign Up"
-                  onButtonClick={closeMenu}
-                  modalComponent={<SignupFormModal />}
-                />
-              </p>
+            <div className="signin-signup">
+              <OpenModalButton
+                className="login"
+                buttonText="SIGN IN"
+                modalComponent={<LoginFormModal />}
+                title="SIGN IN"
+              />
+              <OpenModalButton
+                className="signup"
+                buttonText="CREATE ACCOUNT"
+                modalComponent={<SignupFormModal />}
+              />
             </div>
           )}
         </div>
-      )}
+      }
     </div>
   );
 }

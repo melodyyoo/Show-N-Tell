@@ -13,16 +13,6 @@
   margin: 40px 10px 0 0;
 }
 
-.logged-out-modal {
-  width: 100px;
-  display: flex;
-  justify-content: center;
-}
-
-.logged-out-button {
-  display: flex;
-  justify-content: center;
-}
 
 .manage-spots,
 .manage-reviews {
@@ -44,15 +34,6 @@
   padding-bottom: 20px;
 }
 
-.log-out-button {
-  position: relative;
-  top: -9px;
-  border-radius: 20px;
-  height: 2rem;
-  width: 4rem;
-  background-color: var(--app-color);
-  border-color: var(--app-color);
-}
 
 /* .open-modal-button{
     all:unset;
@@ -92,4 +73,8 @@
 .signup{
     position:relative;
     top: -5px;
+}
+
+.signin-signup{
+  display:flex;
 }
