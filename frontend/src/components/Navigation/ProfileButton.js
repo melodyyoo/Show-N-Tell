@@ -12,9 +12,6 @@ function ProfileButton({ user }) {
   const ulRef = useRef();
   const history = useHistory();
 
-  // const openMenu = () => {
-  //   setShowMenu(!showMenu);
-  // };
 
   useEffect(() => {
     if (!showMenu) return;
@@ -38,8 +35,6 @@ function ProfileButton({ user }) {
     closeMenu();
     history.push("/");
   };
-
-  // const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
   return (
     <div ref={ulRef} style={{ display: "flex", justifyContent: "flex-end" }}>

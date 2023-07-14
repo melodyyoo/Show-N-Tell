@@ -3,6 +3,7 @@ import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import "./LoginForm.css";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
@@ -11,6 +12,7 @@ function LoginFormModal() {
   const [errors, setErrors] = useState({});
   const [validationObject, setValidationObject] = useState({})
   const { closeModal } = useModal();
+  const history = useHistory()
 
   useEffect(()=>{
     const errorsObject = {};
@@ -27,6 +29,7 @@ function LoginFormModal() {
     e.preventDefault();
     setErrors({});
     return dispatch(sessionActions.thunkSetSessionUser({ credential, password }))
+      .then(history.push('/shows'))
       .then(closeModal)
       .catch(async (res) => {
         const data = await res.json();
@@ -39,6 +42,7 @@ function LoginFormModal() {
   const demoUserLogin = (e) =>{
     e.preventDefault();
     return dispatch(sessionActions.thunkSetSessionUser({credential:"Demo-lition",  password: 'password'}))
+    .then(history.push('/shows'))
     .then(closeModal);
   }
 
