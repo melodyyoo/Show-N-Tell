@@ -1,0 +1,47 @@
+.review-poster{
+    height: 150px;
+    width: 120px;
+    min-width: 120px;
+    min-height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 70px;
+    cursor:pointer;
+}
+.review-poster:hover{
+    border:#05B505 3px solid
+}
+
+.single-review-wrapper{
+    display: flex;
+    justify-content: center;
+    width: 600px;
+    gap: 20px;
+    border-bottom: 1px solid gray;
+}
+
+.review-name{
+    font-size:18px;
+    margin:0;
+    font-weight: 800;
+    font-family: "Lato"
+}
+
+.review-likes{
+    display: flex;
+    cursor:pointer;
+    width:fit-content;
+}
+
+.user-of-review{
+    display: flex;
+}
+
+.star-icons{
+    padding-top: 14px;
+    margin-left: 10px;
+}
+
+.fa-face-smile{
+    color:#05B505;
+}

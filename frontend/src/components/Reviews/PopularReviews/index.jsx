@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./PopularReviews.css";
 import { thunkGetPopularReviews } from "../../../store/reviews";
 import { useEffect } from "react";
-import SingleReview from "../SingleReview";
+import PopReview from "../PopReview";
 import "./PopularReviews.css";
 
 export default function PopularReviews() {
@@ -18,7 +18,7 @@ export default function PopularReviews() {
       <p className="pop-reviews-title">POPULAR REVIEWS</p>
       <div className="pop-reviews-inner-wrapper">
         {reviews.map((review) => {
-          return <SingleReview review={review} key={review.id} />;
+          return <PopReview review={review} key={review.id} />;
         })}
       </div>
     </div>
