@@ -32,9 +32,12 @@ module.exports = {
           type: Sequelize.STRING,
           allowNull: false,
         },
-        year: {
-          type: Sequelize.STRING,
+        startYear: {
+          type: Sequelize.INTEGER,
           allowNull: false,
+        },
+        endYear: {
+          type: Sequelize.STRING
         },
         director: {
           type: Sequelize.STRING,

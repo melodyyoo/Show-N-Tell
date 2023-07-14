@@ -39,10 +39,11 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.STRING,
       allowNull:false
     },
-    year: {
-      type:DataTypes.STRING,
+    startYear: {
+      type:DataTypes.INTEGER,
       allowNull:false
     },
+    endYear: DataTypes.INTEGER,
     director: {
       type:DataTypes.STRING,
       allowNull:false
