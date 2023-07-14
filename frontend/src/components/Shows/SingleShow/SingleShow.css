@@ -11,16 +11,11 @@
     height: 280px;
     width: 210px;
     border-radius: 5px;
-    /* z-index: 1;
-    position: absolute; */
     margin-left: 30px;
 
 }
 
 .show-details-wrapper{
-    position: absolute;
-    z-index: 1;
-    /* top: 550px; */
     display: flex;
     gap: 30px;
 }
@@ -54,4 +49,14 @@
 .posted-by{
     font-family: 'Open Sans', sans-serif;
     margin-top: 0
+}
+
+.review-button{
+    height: 50px;
+    width: 250px;
+    background-color: #445566;
+    border:none;
+    cursor:pointer;
+    margin-top: 50px;
+    border-radius: 5px;
 }
