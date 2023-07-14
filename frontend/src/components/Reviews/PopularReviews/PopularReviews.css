@@ -1,0 +1,19 @@
+.popular-reviews-wrapper{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pop-reviews-title{
+    font-family:'Open Sans', sans-serif;
+    color: gray;
+    border-bottom: gray 1px solid;
+}
+
+.pop-reviews-inner-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
