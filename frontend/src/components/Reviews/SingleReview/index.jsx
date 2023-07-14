@@ -10,10 +10,10 @@ export default function SingleReview({ review }) {
       <div>
         <div style={{ display: "flex" }}>
           <p className="review-name">{review.Show?.name}</p>
-          <p style={{ margin: "0 0 0 10px" }}>{review.Show?.year}</p>
+          <p style={{ margin: "2px 0 0 10px", fontFamily:"Lato" }}>{review.Show?.year}</p>
         </div>
         <div className="user-of-review">
-            <p style={{fontFamily:"Lato", fontSize: "13px"}}>{review.User?.username}</p>
+            <p style={{fontFamily:"'Open Sans', sans-serif", fontSize: "13px"}}>{review.User?.username}</p>
             <div className="star-icons">{starIcons(review)}</div>
         </div>
         <p style={{ fontSize: "13px" }}>{review.body}</p>

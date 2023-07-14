@@ -24,6 +24,7 @@
     font-size:18px;
     margin:0;
     font-weight: 800;
+    font-family: "Lato"
 }
 
 .review-likes{
@@ -37,7 +38,7 @@
 }
 
 .star-icons{
-    padding-top: 10px;
+    padding-top: 14px;
     margin-left: 10px;
 }
 
