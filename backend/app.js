@@ -47,7 +47,9 @@ const routes = require('./routes');
 
 app.use(routes); // Connect all the routes
 
-
+app.get('/melo', async()=>{
+  res.json("hello melo");
+})
 
 app.use((_req, _res, next) => {
     const err = new Error("The requested resource couldn't be found.");
