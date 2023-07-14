@@ -1,0 +1,10 @@
+.review-user{
+    font-family: 'Open sans', sans-serif;
+    font-size: 13px;
+
+}
+
+.single-review{
+    max-width: 600px;
+    border-bottom: gray 1px solid;
+}
