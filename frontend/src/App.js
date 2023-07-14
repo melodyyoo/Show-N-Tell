@@ -5,6 +5,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import LandingPage from "./components/LandingPage"
 import AllShows from "./components/Shows/AllShows";
+import SingleShow from "./components/Shows/SingleShow";
 
 
 function App() {
@@ -21,8 +22,8 @@ function App() {
       <Switch>
         <Route exact path='/'component={LandingPage}/>
         <Route exact path='/shows' component={AllShows}/>
-        {/* <Route exact path='/spots/new' component={CreateSpot}/>
-        <Route exact path='/spots/:id' component={SpotDetails}/>
+        <Route exact path='/shows/:showId' component={SingleShow}/>
+        {/* <Route exact path='/spots/:id' component={SpotDetails}/>
         <Route exact path='/spots/:id/edit' component={FormWrapper}/>
         <Route exact path='/reviews/current' component={ManageReviews}/> */}
       </Switch>

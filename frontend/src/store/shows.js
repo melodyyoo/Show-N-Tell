@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf"
 //TYPES
 const GET_ALL_SHOWS = 'shows/getAllShows'
 // const GET_SHOW = "shows/getShow"
+const GET_SHOW_AND_REVIEWS = "shows/getShowsAndReviews"
 
 
 
@@ -23,6 +24,12 @@ const actionGetAllShows = (shows) => {
 //     }
 // }
 
+const actionGetShowAndReviews = (show) =>{
+    return{
+        type: GET_SHOW_AND_REVIEWS,
+        payload: show
+    }
+}
 
 
 
@@ -46,7 +53,14 @@ export const thunkGetAllShows = () => async(dispatch) =>{
 //     }
 // }
 
+export const thunkGetShowAndReview = (showId) => async(dispatch) =>{
+    const res = await csrfFetch(`/api/shows/${showId}`);
 
+    if(res.ok){
+        const data = await res.json();
+        dispatch(actionGetShowAndReviews(data))
+    }
+}
 
 
 
@@ -68,6 +82,8 @@ const showsReducer = (state=initialState, action) =>{
         //     showState.show = action.payload;
 
         //     return showState;
+        case GET_SHOW_AND_REVIEWS:
+            return {show: action.payload}
         default:
             return state
     }
