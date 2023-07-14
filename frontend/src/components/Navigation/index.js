@@ -24,7 +24,7 @@ function Navigation({ isLoaded }) {
         borderBottom: "solid rgb(175, 175, 175)",
       }}
     >
-      <NavLink className="logo-link" exact to="shows">
+      <NavLink className="logo-link" exact to="/shows">
         <img src={logo} alt={logo} />
         <p style={{ margin: "15px 0 0 10px", fontFamily: "'Lato', sans-serif" }}>Show 'N Tell</p>
       </NavLink>
