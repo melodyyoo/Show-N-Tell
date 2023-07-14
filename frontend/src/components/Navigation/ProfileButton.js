@@ -5,6 +5,7 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { useHistory } from "react-router-dom";
+import "./Navigation.css"
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -42,20 +43,18 @@ function ProfileButton({ user }) {
         <div>
           {user ? (
             <div>
-              <p style={{ cursor: "pointer" }} className="log-out-button" onClick={logout}>
-                Log Out
+              <p style={{ cursor: "pointer", fontFamily: "'Open Sans', sans-serif", fontSize: "15px", marginRight: "20px"}} className="log-out-button" onClick={logout}>
+                LOG OUT
               </p>
             </div>
           ) : (
             <div className="signin-signup">
               <OpenModalButton
-                className="login"
                 buttonText="SIGN IN"
                 modalComponent={<LoginFormModal />}
                 title="SIGN IN"
               />
               <OpenModalButton
-                className="signup"
                 buttonText="CREATE ACCOUNT"
                 modalComponent={<SignupFormModal />}
               />
