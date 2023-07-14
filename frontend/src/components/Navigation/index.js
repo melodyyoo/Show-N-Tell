@@ -26,9 +26,9 @@ function Navigation({ isLoaded }) {
         {sessionUser && (
           <NavLink
             style={{ marginRight: 15, textDecoration: "none", color: "black", fontSize: 14, marginTop: 12 }}
-            to="/spots/new"
+            to="/shows"
           >
-            {/* Create a New Spot */}
+            Shows
           </NavLink>
         )}
         {isLoaded && <ProfileButton user={sessionUser} />}
