@@ -1,19 +1,23 @@
 const express = require("express");
 const router = express.Router();
 
-const {Review, Show, ReviewLike} = require("../../db/models");
+const {Review, Show, ReviewLike, User} = require("../../db/models");
 const {requireAuth} = require("../../utils/auth");
 
 //get most popular reviews for home page
 router.get('/popular', async(req,res) =>{
     const reviews = await Review.findAll({
-        include: ReviewLike
+        include: [
+           {model: ReviewLike},
+           {model: Show, attributes:['name', 'year', 'image']},
+           {model: User, attributes:['username']}
+        ]
     });
 
     let newArray = []
     for(let i = 0; i<reviews.length; i++){
         const review = reviews[i]
-        review.dataValues.likes = review.ReviewLikes.length;
+        review.dataValues.likes = review?.ReviewLikes?.length;
 
         newArray.push(review.toJSON())
     }
@@ -23,16 +27,16 @@ router.get('/popular', async(req,res) =>{
 })
 
 //get single review
-router.get("/:reviewId", async(req,res)=>{
-    const review = await Review.findAll({
-        where: {
-            id: req.params.reviewId
-        },
-        include: Show
-    });
+// router.get("/:reviewId", async(req,res)=>{
+//     const review = await Review.findAll({
+//         where: {
+//             id: req.params.reviewId
+//         },
+//         include: Show
+//     });
 
-    res.json(review)
-})
+//     res.json(review)
+// })
 
 //create a review for a show
 router.post("/:reviewId", requireAuth, async(req, res)=>{
@@ -45,7 +49,6 @@ router.post("/:reviewId", requireAuth, async(req, res)=>{
         res.json({message: "Review couldn't be found"})
     }
 
-    
 
 
 
