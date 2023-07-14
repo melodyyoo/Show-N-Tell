@@ -65,16 +65,17 @@
   width: 250px;
 }
 
-.login{
-   position: relative;
-   bottom: -5px;
-}
-
-.signup{
-    position:relative;
-    top: -5px;
-}
 
 .signin-signup{
   display:flex;
+}
+
+.all-shows-button{
+  text-decoration: none;
+  cursor: pointer;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 15px;
 }
