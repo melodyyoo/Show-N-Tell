@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const {Show, Review, ReviewLike, ShowLike} = require("../../db/models");
+const {Show, Review, ReviewLike, ShowLike, User} = require("../../db/models");
 const {requireAuth} = require("../../utils/auth");
 
 //get all shows
@@ -25,12 +25,14 @@ router.get("/", async (req, res) => {
 
 //get a single show + reviews for the show
 router.get("/:showId", async(req, res)=> {
-    const show = await Show.findByPk(req.params.showId);
+    const show = await Show.findByPk(req.params.showId,{
+        include: {model: User, attributes:['username']}
+    });
     const reviews = await Review.findAll({
         where:{
             showId: req.params.showId
         },
-        include: ReviewLike
+        include: ReviewLike,
     });
 
     let sum = 0
