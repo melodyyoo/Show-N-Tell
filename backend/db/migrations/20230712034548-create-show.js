@@ -37,7 +37,7 @@ module.exports = {
           allowNull: false,
         },
         endYear: {
-          type: Sequelize.STRING
+          type: Sequelize.INTEGER
         },
         director: {
           type: Sequelize.STRING,
