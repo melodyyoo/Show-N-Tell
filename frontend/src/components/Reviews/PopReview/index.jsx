@@ -18,7 +18,7 @@ export default function PopReview({ review }) {
         </div>
         <p style={{ fontSize: "13px" }}>{review.body}</p>
         <div className="review-likes">
-          <i class="fa-solid fa-heart" style={{ color: "gray", display: "flex", alignItems: "center" }}></i>
+          <i className="fa-solid fa-heart" style={{ color: "gray", display: "flex", alignItems: "center" }}></i>
           <p style={{ fontSize: "13px", color: "gray", marginLeft: "5px" }}>{review.likes} likes</p>
         </div>
       </div>
