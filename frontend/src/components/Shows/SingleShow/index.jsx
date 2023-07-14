@@ -29,6 +29,17 @@ export default function SingleShow() {
     }
   }
 
+  const ongoingShow = () =>{
+    if(!show.Show?.endYear){
+      return <p className="show-year">{show?.Show?.startYear}-</p>
+    }else if(show?.Show?.startYear === show?.Show?.endYear){
+      return <p className="show-year">{show?.Show?.startYear}</p>
+    }else{
+      return  <p className="show-year">{show?.Show?.startYear}-{show?.Show?.endYear}</p>
+    }
+  }
+
+
   return (
     <div>
       <img className="show-banner" alt="show-banner" src={show.Show?.banner} />
@@ -37,7 +48,7 @@ export default function SingleShow() {
         <div>
           <div className="show-text-wrapper">
             <p className="show-name">{show.Show?.name}</p>
-            <p className="show-year">{show.Show?.year}</p>
+            {ongoingShow()}
             <p className="directed-by">Directed by {show.Show?.director}</p>
           </div>
             <p className="posted-by">Posted by {show.Show?.User?.username}</p>

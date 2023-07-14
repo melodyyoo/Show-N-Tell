@@ -9,7 +9,7 @@ router.get('/popular', async(req,res) =>{
     const reviews = await Review.findAll({
         include: [
            {model: ReviewLike},
-           {model: Show, attributes:['name', 'year', 'image']},
+           {model: Show, attributes:['name', 'startYear','endYear', 'image']},
            {model: User, attributes:['username']}
         ]
     });
