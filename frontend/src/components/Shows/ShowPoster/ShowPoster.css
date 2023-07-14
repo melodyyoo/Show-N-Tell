@@ -4,8 +4,8 @@
 }
 
 .poster{
-    max-height: 250px;
-    max-width: 200px;
+    height: 280px;
+    width: 210px;
     border-radius: 5px;
     cursor: pointer;
 }
