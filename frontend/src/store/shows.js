@@ -2,7 +2,7 @@ import { csrfFetch } from "./csrf"
 
 //TYPES
 const GET_ALL_SHOWS = 'shows/getAllShows'
-
+// const GET_SHOW = "shows/getShow"
 
 
 
@@ -16,7 +16,12 @@ const actionGetAllShows = (shows) => {
     }
 }
 
-
+// const actionGetShow = (show) =>{
+//     return{
+//         type: GET_SHOW,
+//         payload: show
+//     }
+// }
 
 
 
@@ -32,6 +37,14 @@ export const thunkGetAllShows = () => async(dispatch) =>{
     }
 }
 
+// export const thunkGetShow = (showId) => async(dispatch) =>{
+//     const res = await csrfFetch(`/api/shows/${showId}`);
+
+//     if(res.ok){
+//         const data = await res.json();
+//         dispatch(actionGetShow(data));
+//     }
+// }
 
 
 
@@ -39,7 +52,7 @@ export const thunkGetAllShows = () => async(dispatch) =>{
 
 /*********************************************************************************************************** */
 //REDUCER
-const initialState = {allShows:{}}
+const initialState = {allShows:{}, show:{}}
 const showsReducer = (state=initialState, action) =>{
     switch(action.type){
         case GET_ALL_SHOWS:
@@ -48,8 +61,13 @@ const showsReducer = (state=initialState, action) =>{
             action.payload.forEach((show) =>{
                 allShowsState.allShows[show.id] = show
             })
-
             return allShowsState
+
+        // case GET_SHOW:
+        //     const showState = {...state, show:{}};
+        //     showState.show = action.payload;
+
+        //     return showState;
         default:
             return state
     }
