@@ -1,0 +1,20 @@
+.post-review-wrapper{
+    display: flex;
+    background-color: #445566;
+    height: 100px;
+    width: 250px;
+    border-radius: 5px;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.post-review-like{
+    margin-left:50px;
+}
+
+.fa-2xl{
+    margin: 30px 0;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
