@@ -26,7 +26,7 @@ router.get("/", async (req, res) => {
 //get a single show + reviews for the show
 router.get("/:showId", async(req, res)=> {
     const show = await Show.findByPk(req.params.showId,{
-        include: {model: User, attributes:['username']}
+        include: {model: User, attributes:['username', 'id']}
     });
     const reviews = await Review.findAll({
         where:{
