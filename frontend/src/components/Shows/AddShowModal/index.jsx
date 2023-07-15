@@ -17,9 +17,9 @@ export default function AddShowModal() {
   const [banner, setBanner] = useState("");
   const [errors, setErrors] = useState({});
   // const [validationObject, setValidationObject] = useState({});
-  // const { closeModal } = useModal();
+  const { closeModal } = useModal();
   const history = useHistory();
-  const sessionUser = useSelector(state=>state.session.user);
+  const sessionUser = useSelector((state) => state.session.user);
 
   const characterCounter = () => {
     if (synopsis.length > 600) {
@@ -40,22 +40,24 @@ export default function AddShowModal() {
       genre,
       image,
       banner,
-      userId:sessionUser.id
+      userId: sessionUser.id,
     };
 
     const tempErrors = {};
 
     if (synopsis.length > 600) tempErrors.synopsis = "Synopsis must be less than 600 characters.";
-    if (startYear > endYear) tempErrors.endYear = "Start year must come before the end year.";
+    if (endYear && startYear > endYear) tempErrors.endYear = "Start year must come before the end year.";
 
     const tempErrorsArray = Object.values(tempErrors);
     if (tempErrorsArray.length > 0) {
       setErrors(tempErrors);
     } else {
       dispatch(thunkPostShow(newShow))
-      .then((show) => history.push(`/shows/${show.id}`))
-        .catch(async (res) => {
-          const data = await res.json();
+        .then((show) => {
+          closeModal();
+          history.push(`/shows/${show.id}`);
+        })
+        .catch((data) => {
           if (data && data.errors) {
             setErrors({ ...data.errors, ...errors });
           }
@@ -123,7 +125,7 @@ export default function AddShowModal() {
               onChange={(e) => setEndYear(e.target.value)}
             >
               <option defaultValue=" "></option>
-              <option value="null">Ongoing</option>
+              <option label="Ongoing" value={null}></option>
               {years.map((year, idx) => {
                 return (
                   <option value={year} key={idx}>

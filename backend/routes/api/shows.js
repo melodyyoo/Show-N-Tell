@@ -51,13 +51,12 @@ router.post("/", requireAuth, async (req, res) => {
   const error = { message: "Bad Request", errors: {} };
 
   if (synopsis.length > 600) error.errors.synopsis = "Synopsis must be less than 600 characters.";
-  if (startYear > endYear) error.errors.endYear = "Start year must come before the end year.";
+  if (endYear && (startYear > endYear)) error.errors.endYear = "Start year must come before the end year.";
 
   if (Object.keys(error.errors).length) {
     res.status(400);
     return res.json(error);
   }
-  console.log("REQ USER: ", req.user)
 
   const newShow = await Show.create({
     name,
@@ -68,11 +67,19 @@ router.post("/", requireAuth, async (req, res) => {
     genre,
     image,
     banner,
-    userId: req.user.id
+    userId
   });
 
   res.status(201);
   res.json(newShow);
 });
+
+//edit a show
+router.
+
+
+
+
+//delete a show
 
 module.exports = router;

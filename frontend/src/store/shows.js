@@ -81,7 +81,7 @@ export const thunkPostShow = (show) => async(dispatch) =>{
         dispatch(actionPostShow(newShow))
         return newShow
     }else{
-        const errors = res.json();
+        const errors = await res.json();
         return errors;
     }
 }
@@ -109,10 +109,10 @@ const showsReducer = (state=initialState, action) =>{
         case GET_SHOW_AND_REVIEWS:
             return {show: action.payload}
         case POST_SHOW:
-            const newShowState = {...state, show:action.payload};
+            const newShowState = {allShows:{...state.allShows}, show:action.payload};
             newShowState.allShows[action.payload.id] = action.payload;
 
-            return newShowState; 
+            return newShowState;
         default:
             return state
     }
