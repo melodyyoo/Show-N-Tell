@@ -4,6 +4,7 @@ import { csrfFetch } from "./csrf"
 const GET_ALL_SHOWS = 'shows/getAllShows'
 // const GET_SHOW = "shows/getShow"
 const GET_SHOW_AND_REVIEWS = "shows/getShowsAndReviews"
+const POST_SHOW = 'shows/postShow'
 
 
 
@@ -31,6 +32,12 @@ const actionGetShowAndReviews = (show) =>{
     }
 }
 
+const actionPostShow = (show) =>{
+    return{
+        type: POST_SHOW,
+        payload: show
+    }
+}
 
 
 /*********************************************************************************************************** */
@@ -62,6 +69,23 @@ export const thunkGetShowAndReview = (showId) => async(dispatch) =>{
     }
 }
 
+export const thunkPostShow = (show) => async(dispatch) =>{
+    const res = await csrfFetch(`/api/shows`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(show)
+    })
+
+    if(res.ok){
+        const newShow = await res.json();
+        dispatch(actionPostShow(newShow))
+        return newShow
+    }else{
+        const errors = res.json();
+        return errors;
+    }
+}
+
 
 
 /*********************************************************************************************************** */
@@ -84,6 +108,11 @@ const showsReducer = (state=initialState, action) =>{
         //     return showState;
         case GET_SHOW_AND_REVIEWS:
             return {show: action.payload}
+        case POST_SHOW:
+            const newShowState = {...state, show:action.payload};
+            newShowState.allShows[action.payload.id] = action.payload;
+
+            return newShowState; 
         default:
             return state
     }

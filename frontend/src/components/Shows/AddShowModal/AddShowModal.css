@@ -1,0 +1,33 @@
+.submit-button{
+    color: white;
+    border: none;
+    background-color: #07B507;
+    font-family:  'Open Sans', sans-serif;
+}
+
+.synopsis-input{
+    resize: none;
+    color:black;
+    height: 150px;
+    width: 248px;
+
+}
+
+.synopsis-label{
+    margin:0
+}
+
+label{
+    font-family: 'Open Sans', sans-serif;
+}
+
+.character-counter{
+    margin:0 0 0 205px;
+    font-size: 12px;
+    position: relative;
+    top: -13px;
+}
+
+.errors{
+    color: red; 
+}
