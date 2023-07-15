@@ -8,7 +8,7 @@ export default function PostReview() {
         <p>Review</p>
       </div>
       <div className="post-review-like">
-        <i style={{color: "#EF8733"}}class="fa-solid fa-heart fa-2xl"></i>
+        <i style={{color: "#EF8733"}}className="fa-solid fa-heart fa-2xl"></i>
         <p>Like</p>
       </div>
     </div>
