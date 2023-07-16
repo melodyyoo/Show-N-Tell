@@ -40,7 +40,7 @@ export default function SingleShow() {
           }}
           buttonText="Edit or Delete Show"
           title="Edit show"
-          modalComponent={<EditShowModal />}
+          modalComponent={<EditShowModal show={show}/>}
         />
       );
     } else if (!sessionUser) {
