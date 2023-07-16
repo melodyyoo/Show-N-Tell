@@ -2,10 +2,9 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../../context/Modal";
-import { thunkPostShow } from "../../../store/shows";
+import { thunkEditShow } from "../../../store/shows";
 
 export default function EditShowModal({show}) {
-    console.log("SHOW ID", show)
   const dispatch = useDispatch();
   const [name, setName] = useState(show.Show.name);
   const [director, setDirector] = useState(show.Show.director);
@@ -27,11 +26,12 @@ export default function EditShowModal({show}) {
     }
   };
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors({});
 
-    const newShow = {
+    const updatedShow = {
       name,
       director,
       synopsis,
@@ -52,10 +52,10 @@ export default function EditShowModal({show}) {
     if (tempErrorsArray.length > 0) {
       setErrors(tempErrors);
     } else {
-      dispatch(thunkPostShow(newShow))
+      dispatch(thunkEditShow(updatedShow, show?.Show?.id))
         .then((show) => {
           closeModal();
-          history.push(`/shows/${show.id}`);
+          window.location.reload();
         })
         .catch((data) => {
           if (data && data.errors) {
@@ -121,7 +121,7 @@ export default function EditShowModal({show}) {
             <select
               required
               id="select"
-              value={endYear}
+              value={endYear ? endYear : null}
               style={{ color: "black" }}
               onChange={(e) => setEndYear(e.target.value)}
             >

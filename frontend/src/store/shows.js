@@ -5,6 +5,7 @@ const GET_ALL_SHOWS = 'shows/getAllShows'
 // const GET_SHOW = "shows/getShow"
 const GET_SHOW_AND_REVIEWS = "shows/getShowsAndReviews"
 const POST_SHOW = 'shows/postShow'
+const EDIT_SHOW = 'shows/editShow'
 
 
 
@@ -39,6 +40,12 @@ const actionPostShow = (show) =>{
     }
 }
 
+const actionEditShow = (show) =>{
+    return{
+        type: EDIT_SHOW,
+        payload: show
+    }
+}
 
 /*********************************************************************************************************** */
 //THUNKS
@@ -86,6 +93,22 @@ export const thunkPostShow = (show) => async(dispatch) =>{
     }
 }
 
+export const thunkEditShow = (show, showId) => async(dispatch) =>{
+    const res = await csrfFetch(`/api/shows/${showId}`, {
+        method: "PUT",
+        headers:  { "Content-Type": "application/json" },
+        body: JSON.stringify(show)
+    })
+
+    if(res.ok){
+        const updatedShow = await res.json();
+        dispatch(actionEditShow(updatedShow))
+        return updatedShow
+    }else{
+        const errors = await res.json();
+        return errors;
+    }
+}
 
 
 /*********************************************************************************************************** */
@@ -113,6 +136,10 @@ const showsReducer = (state=initialState, action) =>{
             newShowState.allShows[action.payload.id] = action.payload;
 
             return newShowState;
+        case EDIT_SHOW:
+            const updatedShowState = {...state, show:{}}
+            updatedShowState.show = action.payload
+            return updatedShowState; 
         default:
             return state
     }
