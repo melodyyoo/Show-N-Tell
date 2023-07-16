@@ -41,7 +41,7 @@ router.get("/:showId", async (req, res) => {
   }
   const showRating = parseFloat(sum / reviews.length).toFixed(1);
   show.dataValues.showRating = showRating;
-  res.json({ Show: show, Reviews: reviews });
+  res.status(200).json({ Show: show, Reviews: reviews });
 });
 
 //post a show
@@ -75,7 +75,44 @@ router.post("/", requireAuth, async (req, res) => {
 });
 
 //edit a show
-router.
+router.put("/:showId", requireAuth, async(req, res)=>{
+  const show = await Show.findByPk(req.params.showId);
+
+  if(!show){
+    res.status(404).json({
+      message: "Show couldn't be found",
+    });
+  }
+
+  if(show.dataValues.userId !== req.user.id){
+    res.status(403);
+    return res.json({ message: "Forbidden" });
+  }
+
+  const { name, director, synopsis, startYear, endYear, genre, image, banner, userId} = req.body;
+  const error = { message: "Bad Request", errors: {} };
+
+  if (synopsis.length > 600) error.errors.synopsis = "Synopsis must be less than 600 characters.";
+  if (endYear && (startYear > endYear)) error.errors.endYear = "Start year must come before the end year.";
+
+  if (Object.keys(error.errors).length) {
+    res.status(400);
+    return res.json(error);
+  }
+  show.set({
+    name,
+    director,
+    synopsis,
+    startYear,
+    endYear,
+    genre,
+    image,
+    banner,
+    userId
+  });
+  await show.save();
+  return res.json(show);
+})
 
 
 
