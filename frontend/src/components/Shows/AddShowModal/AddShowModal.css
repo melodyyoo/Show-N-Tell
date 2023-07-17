@@ -3,6 +3,7 @@
     border: none;
     background-color: #07B507;
     font-family:  'Open Sans', sans-serif;
+    width: 70px;
 }
 
 .synopsis-input{
@@ -29,5 +30,5 @@ label{
 }
 
 .errors{
-    color: red; 
+    color: red;
 }

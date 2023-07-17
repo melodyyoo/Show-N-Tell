@@ -12,7 +12,7 @@ function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
 
   const modalComponent = sessionUser ? <AddShowModal/> : <LoginFormModal/>
-  const title = sessionUser ? "Don't see a show? Add one now!" : "SIGN IN";
+  const title = sessionUser ? "DON'T SEE A SHOW? ADD ONE NOW!" : "SIGN IN";
 
   return (
     <div

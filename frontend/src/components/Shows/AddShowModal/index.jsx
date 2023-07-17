@@ -125,7 +125,7 @@ export default function AddShowModal() {
               onChange={(e) => setEndYear(e.target.value)}
             >
               <option defaultValue=" "></option>
-              <option label="Ongoing" value={null}></option>
+              <option label="Ongoing" value={""}></option>
               {years.map((year, idx) => {
                 return (
                   <option value={year} key={idx}>
