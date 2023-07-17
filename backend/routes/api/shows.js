@@ -29,7 +29,10 @@ router.get("/:showId", async (req, res) => {
     where: {
       showId: req.params.showId,
     },
-    include: ReviewLike,
+    include:[
+      {model: ReviewLike},
+      {model: User, attributes:['username']}
+    ],
   });
 
   let sum = 0;
