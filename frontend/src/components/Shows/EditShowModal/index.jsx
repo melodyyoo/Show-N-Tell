@@ -171,7 +171,7 @@ export default function EditShowModal({ show }) {
           </button>
           <OpenModalButton
             buttonText="DELETE"
-            style={{ backgroundColor: "gray", borderRadius: "10px", width: "70px", height: "30px",fontFamily:"'Open Sans', sans-serif", fontSize:"13px", display: "flex", justifyContent:"center", alignItems:"center" }}
+            style={{cursor:"pointer", backgroundColor: "gray", borderRadius: "10px", width: "70px", height: "30px",fontFamily:"'Open Sans', sans-serif", fontSize:"13px", display: "flex", justifyContent:"center", alignItems:"center" }}
             modalComponent={<DeleteShowModal show={show} />}
             title="PLEASE CONFIRM"
           />
