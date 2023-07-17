@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import { useModal } from "../../../context/Modal";
 import { thunkEditShow } from "../../../store/shows";
+import OpenModalButton from "../../OpenModalButton"
+import DeleteShowModal from "../DeleteShowModal";
 
-export default function EditShowModal({show}) {
+export default function EditShowModal({ show }) {
   const dispatch = useDispatch();
   const [name, setName] = useState(show.Show.name);
   const [director, setDirector] = useState(show.Show.director);
@@ -17,7 +19,7 @@ export default function EditShowModal({show}) {
   const [errors, setErrors] = useState({});
   // const [validationObject, setValidationObject] = useState({});
   const { closeModal } = useModal();
-  const history = useHistory();
+  //   const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
 
   const characterCounter = () => {
@@ -25,7 +27,6 @@ export default function EditShowModal({show}) {
       return { color: "red" };
     }
   };
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -55,7 +56,6 @@ export default function EditShowModal({show}) {
       dispatch(thunkEditShow(updatedShow, show?.Show?.id))
         .then((show) => {
           closeModal();
-          window.location.reload();
         })
         .catch((data) => {
           if (data && data.errors) {
@@ -140,7 +140,13 @@ export default function EditShowModal({show}) {
         </div>
         <label>
           Genre
-          <select value={genre} required id="select" style={{ color: "black" }} onChange={(e) => setGenre(e.target.value)}>
+          <select
+            value={genre}
+            required
+            id="select"
+            style={{ color: "black" }}
+            onChange={(e) => setGenre(e.target.value)}
+          >
             <option defaultValue=" "></option>
             {genres.map((genre, idx) => {
               return (
@@ -159,9 +165,13 @@ export default function EditShowModal({show}) {
           Banner image
           <input type="text" value={banner} onChange={(e) => setBanner(e.target.value)} required />
         </label>
-        <button className="submit-button" type="submit">
-          Submit
-        </button>
+        <div>
+          <button className="submit-button" type="submit">
+            Submit
+          </button>
+          {/* <OpenModalButton buttonText="DELETE" modalComponent={<DeleteShowModal/>} title="PLEASE CONFIRM" /> */}
+          <OpenModalButton buttonText="DELETE" modalComponent={<DeleteShowModal show={show}/>} title="PLEASE CONFIRM"/>
+        </div>
       </form>
     </div>
   );

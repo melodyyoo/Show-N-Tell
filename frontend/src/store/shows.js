@@ -6,6 +6,7 @@ const GET_ALL_SHOWS = 'shows/getAllShows'
 const GET_SHOW_AND_REVIEWS = "shows/getShowsAndReviews"
 const POST_SHOW = 'shows/postShow'
 const EDIT_SHOW = 'shows/editShow'
+const DELETE_SHOW = 'shows/deleteShow'
 
 
 
@@ -44,6 +45,13 @@ const actionEditShow = (show) =>{
     return{
         type: EDIT_SHOW,
         payload: show
+    }
+}
+
+const actionDeleteShow = (showId) =>{
+    return{
+        type: DELETE_SHOW,
+        payload: showId
     }
 }
 
@@ -110,6 +118,19 @@ export const thunkEditShow = (show, showId) => async(dispatch) =>{
     }
 }
 
+export const thunkDeleteShow = (showId) =>async(dispatch)=>{
+    const res = await csrfFetch(`/api/shows/${showId}`, {
+        method: "DELETE"
+    });
+
+    if(res.ok){
+        dispatch(actionDeleteShow(showId))
+    }else{
+        const errors = await res.json();
+        return errors;
+    }
+}
+
 
 /*********************************************************************************************************** */
 //REDUCER
@@ -137,9 +158,13 @@ const showsReducer = (state=initialState, action) =>{
 
             return newShowState;
         case EDIT_SHOW:
-            const updatedShowState = {...state, show:{}}
-            updatedShowState.show = action.payload
-            return updatedShowState; 
+            const updatedShowState = {...state, show:{...state.show}}
+            updatedShowState.show.Show = {...state.show.Show,...action.payload}
+            return updatedShowState;
+        case DELETE_SHOW:
+            const currentAllShows = {...state.allShows};
+            delete currentAllShows[action.payload];
+            return {...state, allShows: currentAllShows}
         default:
             return state
     }
