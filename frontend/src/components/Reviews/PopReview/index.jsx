@@ -4,15 +4,15 @@ import "./PopReview.css";
 export default function PopReview({ review }) {
   if (!review) return null;
 
-  const ongoingShow = () =>{
+  let ongoingShow;
     if(!review?.Show?.endYear){
-      return <p style={{ margin: "2px 0 0 10px", fontFamily:"Lato" }}>{review?.Show?.startYear}-</p>
+      ongoingShow = <p style={{ margin: "2px 0 0 10px", fontFamily:"Lato" }}>{review?.Show?.startYear}-</p>
     }else if(review?.Show?.startYear === review?.Show?.endYear){
-      return <p style={{ margin: "2px 0 0 10px", fontFamily:"Lato" }}>{review?.Show?.startYear}</p>
+      ongoingShow = <p style={{ margin: "2px 0 0 10px", fontFamily:"Lato" }}>{review?.Show?.startYear}</p>
     }else{
-      return  <p style={{ margin: "2px 0 0 10px", fontFamily:"Lato" }}>{review?.Show?.startYear}-{review?.Show?.endYear}</p>
+      ongoingShow = <p style={{ margin: "2px 0 0 10px", fontFamily:"Lato" }}>{review?.Show?.startYear}-{review?.Show?.endYear}</p>
     }
-  }
+
 
   return (
     <div className="single-review-wrapper">
@@ -20,7 +20,7 @@ export default function PopReview({ review }) {
       <div>
         <div style={{ display: "flex" }}>
           <p className="review-name">{review.Show?.name}</p>
-          {ongoingShow()}
+          {ongoingShow}
         </div>
         <div className="user-of-review">
             <p style={{fontFamily:"'Open Sans', sans-serif", fontSize: "13px"}}>{review.User?.username}</p>
