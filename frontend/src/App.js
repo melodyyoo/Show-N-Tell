@@ -6,6 +6,7 @@ import Navigation from "./components/Navigation";
 import LandingPage from "./components/LandingPage"
 import AllShows from "./components/Shows/AllShows";
 import SingleShow from "./components/Shows/SingleShow";
+import SingleReviewPage from "./components/Reviews/SingleReviewPage";
 
 
 function App() {
@@ -23,8 +24,8 @@ function App() {
         <Route exact path='/'component={LandingPage}/>
         <Route exact path='/shows' component={AllShows}/>
         <Route exact path='/shows/:showId' component={SingleShow}/>
-        {/* <Route exact path='/spots/:id' component={SpotDetails}/>
-        <Route exact path='/spots/:id/edit' component={FormWrapper}/>
+        <Route exact path='/reviews/:reviewId' component={SingleReviewPage}/>
+        {/* <Route exact path='/spots/:id/edit' component={FormWrapper}/>
         <Route exact path='/reviews/current' component={ManageReviews}/> */}
       </Switch>
       }

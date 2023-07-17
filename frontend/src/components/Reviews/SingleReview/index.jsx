@@ -1,21 +1,14 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { thunkGetUser } from "../../../store/user";
 import "./SingleReview.css";
 import starIcons from "../../../hooks/starIcons";
+import { useHistory } from "react-router-dom";
 
 export default function SingleReview({ review }) {
-  const user = useSelector((state) => state.user.user);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(thunkGetUser(review.userId));
-  }, [dispatch, review.userId]);
+  const history = useHistory();
 
   return (
     <div className="single-review">
       <div style={{ display: "flex" }}>
-        <p className="review-user">Review by {user.username}</p>
+        <p className="review-user" onClick={()=>history.push(`/reviews/${review?.id}`)}>Review by {review?.User?.username}</p>
         <div style={{ margin: "11px 0 0 10px" }}>{starIcons(review)}</div>
       </div>
       <p>{review.body}</p>
