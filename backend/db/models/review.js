@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
 
       Review.belongsTo(models.Show, {foreignKey:"showId"})
 
-      Review.belongsTo(models.User, {foreignKey:"userId", onDelete:"cascade", hooks:true})
+      Review.belongsTo(models.User, {foreignKey:"userId"})
     }
   }
   Review.init({
