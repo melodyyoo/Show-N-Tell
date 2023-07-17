@@ -79,7 +79,7 @@ router.put("/:showId", requireAuth, async(req, res)=>{
   const show = await Show.findByPk(req.params.showId);
 
   if(!show){
-    res.status(404).json({
+    return res.status(404).json({
       message: "Show couldn't be found",
     });
   }
@@ -118,5 +118,18 @@ router.put("/:showId", requireAuth, async(req, res)=>{
 
 
 //delete a show
+router.delete('/:showId', requireAuth, async(req,res)=>{
+  const show = await Show.findByPk(req.params.showId);
+
+  if(!show){
+   return res.status(404).json({message:"Show couldn't be found."});
+  }
+  if(show.dataValues.userId !== req.user.id){
+    return res.status(403).json({message:"Forbidden."});
+  }
+
+  await show.destroy();
+  return res.json({message: "Successfully deleted."})
+})
 
 module.exports = router;
