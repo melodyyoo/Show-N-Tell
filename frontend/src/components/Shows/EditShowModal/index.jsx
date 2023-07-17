@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import { useHistory } from "react-router-dom";
 import { useModal } from "../../../context/Modal";
 import { thunkEditShow } from "../../../store/shows";
-import OpenModalButton from "../../OpenModalButton"
+import OpenModalButton from "../../OpenModalButton";
 import DeleteShowModal from "../DeleteShowModal";
 
 export default function EditShowModal({ show }) {
@@ -126,7 +126,7 @@ export default function EditShowModal({ show }) {
               onChange={(e) => setEndYear(e.target.value)}
             >
               <option defaultValue=" "></option>
-              <option label="Ongoing" value={null}></option>
+              <option label="Ongoing" value={""}></option>
               {years.map((year, idx) => {
                 return (
                   <option value={year} key={idx}>
@@ -167,10 +167,14 @@ export default function EditShowModal({ show }) {
         </label>
         <div>
           <button className="submit-button" type="submit">
-            Submit
+            SAVE
           </button>
-          {/* <OpenModalButton buttonText="DELETE" modalComponent={<DeleteShowModal/>} title="PLEASE CONFIRM" /> */}
-          <OpenModalButton buttonText="DELETE" modalComponent={<DeleteShowModal show={show}/>} title="PLEASE CONFIRM"/>
+          <OpenModalButton
+            buttonText="DELETE"
+            style={{ backgroundColor: "gray", borderRadius: "10px", width: "70px", height: "30px",fontFamily:"'Open Sans', sans-serif", fontSize:"13px", display: "flex", justifyContent:"center", alignItems:"center" }}
+            modalComponent={<DeleteShowModal show={show} />}
+            title="PLEASE CONFIRM"
+          />
         </div>
       </form>
     </div>
