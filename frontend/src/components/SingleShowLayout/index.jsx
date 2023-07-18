@@ -98,16 +98,30 @@ function EditOrReviewButton({ show }) {
       />
     );
   }
-  // else if(pathname.includes("shows") && ExistingReviewCheck(show, sessionUser)){
-  //   return <EditReviewModal/>;
-  // }
+  else if(pathname.includes("shows") && show?.Reviews?.find(review=>review?.userId === sessionUser?.id)){
+    return (
+      <OpenModalButton
+        style={{
+          height: " 50px",
+          width: " 250px",
+          backgroundColor: "#445566",
+          border: "none",
+          cursor: "pointer",
+          marginTop: "50px",
+          borderRadius: "5px",
+          fontFamily: "'Open Sans', sans-serif",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+        title="EDIT REVIEW"
+        buttonText="Edit or Delete Review"
+        modalComponent={<EditReviewModal review={review} />}
+      />
+    )
+  }
   else {
     return <PostReview />;
   }
 }
 
-
-// function ExistingReviewCheck(show, sessionUser){
-//   const found = show.Reviews.find(review=>review?.userId === sessionUser?.id);
-//   return found;
-// }
