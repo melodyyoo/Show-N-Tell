@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkGetShowAndReview } from "../../store/shows";
 import { useEffect } from "react";
 import EditReviewModal from "../Reviews/EditReviewModal";
-import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import { useLocation } from "react-router-dom/";
 
 export default function SingleShowLayout({ showId, children, reviewsOrComments }) {
   const show = useSelector((state) => state.shows.show);
@@ -98,18 +98,16 @@ function EditOrReviewButton({ show }) {
       />
     );
   }
-  else if(pathname.includes("shows") && <ExistingReviewCheck show={show} sessionUser={sessionUser}/>){
-    return <EditReviewModal/>;
-  }
+  // else if(pathname.includes("shows") && ExistingReviewCheck(show, sessionUser)){
+  //   return <EditReviewModal/>;
+  // }
   else {
     return <PostReview />;
   }
 }
 
 
-function ExistingReviewCheck({show, sessionUser}){
-  console.log("SHOW: ", show);
-  console.log("session user: ", sessionUser)
-  const found = show.Reviews.find(review=>review?.userId === sessionUser?.id);
-  return found;
-}
+// function ExistingReviewCheck(show, sessionUser){
+//   const found = show.Reviews.find(review=>review?.userId === sessionUser?.id);
+//   return found;
+// }
