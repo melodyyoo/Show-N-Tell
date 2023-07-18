@@ -151,7 +151,9 @@ const showsReducer = (state=initialState, action) =>{
 
         //     return showState;
         case GET_SHOW_AND_REVIEWS:
-            return {show: action.payload}
+            const showAndReviewState = {...state, show:{}};
+            showAndReviewState.show = action.payload;
+            return showAndReviewState; 
         case POST_SHOW:
             const newShowState = {allShows:{...state.allShows}, show:action.payload};
             newShowState.allShows[action.payload.id] = action.payload;
