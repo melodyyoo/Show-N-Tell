@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/melodyyoo/API-Project/issues"
   },
-  "homepage": "https://github.com/melodyyoo/API-Project#readme"
+  "homepage": "https://github.com/melodyyoo/API-Project#readme",
+  "dependencies": {
+    "swiper": "^10.0.4"
+  }
 }
