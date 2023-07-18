@@ -10,12 +10,11 @@ export default function SingleReviewPage() {
   const { reviewId } = useParams();
   const review = useSelector((state) => state.reviews.review);
 
-
   useEffect(() => {
     dispatch(thunkGetReview(reviewId));
   }, [dispatch, reviewId]);
 
-  if (!review?.id) return null;
+  if (!review?.id || review.id !== parseInt(reviewId)) return null;
 
   let ongoingShow;
   if (!review.Show?.endYear) {
