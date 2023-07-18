@@ -6,11 +6,11 @@ export default function PopReview({ review }) {
 
   let ongoingShow;
     if(!review?.Show?.endYear){
-      ongoingShow = <p style={{ margin: "2px 0 0 10px", fontFamily:"Lato" }}>{review?.Show?.startYear}-</p>
+      ongoingShow = <p style={{ margin: "2px 0 0 10px", fontFamily:"'Josefin Sans', sans-serif" }}>{review?.Show?.startYear}-</p>
     }else if(review?.Show?.startYear === review?.Show?.endYear){
-      ongoingShow = <p style={{ margin: "2px 0 0 10px", fontFamily:"Lato" }}>{review?.Show?.startYear}</p>
+      ongoingShow = <p style={{ margin: "2px 0 0 10px", fontFamily:"'Josefin Sans', sans-serif" }}>{review?.Show?.startYear}</p>
     }else{
-      ongoingShow = <p style={{ margin: "2px 0 0 10px", fontFamily:"Lato" }}>{review?.Show?.startYear}-{review?.Show?.endYear}</p>
+      ongoingShow = <p style={{ margin: "2px 0 0 10px", fontFamily:"'Josefin Sans', sans-serif" }}>{review?.Show?.startYear}-{review?.Show?.endYear}</p>
     }
 
 

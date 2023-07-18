@@ -10,3 +10,5 @@ Fonts:
 font-family: 'Lato',sans-serif
 font-family: 'Open Sans', sans-serif
 font-family: 'Playfair Display', serif
+font-family: 'Josefin Sans', sans-serif;
+

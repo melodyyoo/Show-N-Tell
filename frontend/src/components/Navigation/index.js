@@ -26,7 +26,7 @@ function Navigation({ isLoaded }) {
     >
       <NavLink className="logo-link" exact to="/shows">
         <img src={logo} alt={logo} />
-        <p style={{ margin: "15px 0 0 10px", fontFamily: "'Lato', sans-serif" }}>Show 'N Tell</p>
+        <p style={{ margin: "15px 0 0 10px", fontFamily: "'Josefin Sans', sans-serif", fontWeight:700}}>Show 'N Tell</p>
       </NavLink>
       <div style={{ display: "flex", alignItems: "center" }}>
         <NavLink className="all-shows-button" exact to="/shows">
