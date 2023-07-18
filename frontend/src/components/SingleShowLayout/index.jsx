@@ -2,75 +2,114 @@ import LoginFormModal from "../LoginFormModal";
 import OpenModalButton from "../OpenModalButton";
 import PostReview from "../PostReview";
 import EditShowModal from "../Shows/EditShowModal";
-import { useSelector } from "react-redux";
-import AddReviewModal from "../Reviews/AddReviewModal"
+import { useDispatch, useSelector } from "react-redux";
+import { thunkGetShowAndReview } from "../../store/shows";
+import { useEffect } from "react";
+import EditReviewModal from "../Reviews/EditReviewModal";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
-export default function SingleShowLayout({children, reviewsOrComments}){
-    const show = useSelector((state) => state.shows.show);
+export default function SingleShowLayout({ showId, children, reviewsOrComments }) {
+  const show = useSelector((state) => state.shows.show);
+  const dispatch = useDispatch();
 
-    return(
-        <div>
-        <img className="show-banner" alt="show-banner" src={show.Show?.banner} />
-        <div className="show-details-wrapper">
-          <img className="show-image" alt="show-poster" src={show.Show?.image} />
-          {children}
-        <EditOrReviewButton show={show}/>
-        </div>
-        {reviewsOrComments}
+  useEffect(() => {
+    dispatch(thunkGetShowAndReview(showId));
+  }, [dispatch, showId]);
+
+  return (
+    <div>
+      <img className="show-banner" alt="show-banner" src={show.Show?.banner} />
+      <div className="show-details-wrapper">
+        <img className="show-image" alt="show-poster" src={show.Show?.image} />
+        {children}
+        <EditOrReviewButton show={show} />
       </div>
-    )
+      {reviewsOrComments}
+    </div>
+  );
 }
 
-function EditOrReviewButton({show}){
-    const sessionUser = useSelector(state=> state.session.user);
-    const review = useSelector(state=>state.reviews.review);
+function EditOrReviewButton({ show }) {
+  const sessionUser = useSelector((state) => state.session.user);
+  const review = useSelector((state) => state.reviews.review);
+  const {pathname} = useLocation();
 
-    if (sessionUser?.id === show.Show?.User?.id) {
-      return (
-        <OpenModalButton
-          style={{
-            height: " 50px",
-            width: " 250px",
-            backgroundColor: "#445566",
-            border: "none",
-            cursor: "pointer",
-            marginTop: "50px",
-            borderRadius: "5px",
-            fontFamily: "'Open Sans', sans-serif",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-          buttonText="Edit or Delete Show"
-          title="Edit show"
-          modalComponent={<EditShowModal show={show} />}
-        />
-      );
-    } else if (!sessionUser) {
-      return (
-        <OpenModalButton
-          style={{
-            height: " 50px",
-            width: " 250px",
-            backgroundColor: "#445566",
-            border: "none",
-            cursor: "pointer",
-            marginTop: "50px",
-            borderRadius: "5px",
-            fontFamily: "'Open Sans', sans-serif",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-          title="SIGN IN"
-          buttonText="Sign in to log, rate, or review"
-          modalComponent={<LoginFormModal />}
-        />
-      );
-    } else if(sessionUser?.id === review?.userId){
-        return <OpenModalButton title="" buttonText="Edit or Delete Review" modalComponent={<AddReviewModal/>}/>
+  if (sessionUser?.id === show.Show?.User?.id) {
+    return (
+      <OpenModalButton
+        style={{
+          height: " 50px",
+          width: " 250px",
+          backgroundColor: "#445566",
+          border: "none",
+          cursor: "pointer",
+          marginTop: "50px",
+          borderRadius: "5px",
+          fontFamily: "'Open Sans', sans-serif",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+        buttonText="Edit or Delete Show"
+        title="Edit show"
+        modalComponent={<EditShowModal show={show} />}
+      />
+    );
+  } else if (!sessionUser) {
+    return (
+      <OpenModalButton
+        style={{
+          height: " 50px",
+          width: " 250px",
+          backgroundColor: "#445566",
+          border: "none",
+          cursor: "pointer",
+          marginTop: "50px",
+          borderRadius: "5px",
+          fontFamily: "'Open Sans', sans-serif",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+        title="SIGN IN"
+        buttonText="Sign in to log, rate, or review"
+        modalComponent={<LoginFormModal />}
+      />
+    );
+  } else if (pathname.includes("reviews") && sessionUser?.id === review?.userId) {
+    return (
+      <OpenModalButton
+        style={{
+          height: " 50px",
+          width: " 250px",
+          backgroundColor: "#445566",
+          border: "none",
+          cursor: "pointer",
+          marginTop: "50px",
+          borderRadius: "5px",
+          fontFamily: "'Open Sans', sans-serif",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+        title="EDIT REVIEW"
+        buttonText="Edit or Delete Review"
+        modalComponent={<EditReviewModal review={review} />}
+      />
+    );
+  }
+  else if(pathname.includes("shows") && <ExistingReviewCheck show={show} sessionUser={sessionUser}/>){
+    return <EditReviewModal/>;
+  }
+  else {
+    return <PostReview />;
+  }
+}
 
-    }else {
-      return <PostReview/>;
-    }
-  };
+
+function ExistingReviewCheck({show, sessionUser}){
+  console.log("SHOW: ", show);
+  console.log("session user: ", sessionUser)
+  const found = show.Reviews.find(review=>review?.userId === sessionUser?.id);
+  return found;
+}

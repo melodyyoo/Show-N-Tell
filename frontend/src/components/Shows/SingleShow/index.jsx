@@ -1,19 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { thunkGetShowAndReview } from "../../../store/shows";
-import { useParams } from "react-router-dom";
 import "./SingleShow.css";
 import AllReviews from "../../Reviews/AllReviews";
 import SingleShowLayout from "../../SingleShowLayout";
+import { useParams } from "react-router-dom";
 
 export default function SingleShow() {
-  const dispatch = useDispatch();
-  const { showId } = useParams();
   const show = useSelector((state) => state.shows.show);
-
-  useEffect(() => {
-    dispatch(thunkGetShowAndReview(showId));
-  }, [dispatch, showId]);
+  const { showId } = useParams();
 
   if (!show) return null;
 
@@ -32,7 +26,7 @@ export default function SingleShow() {
 
 
   return (
-    <SingleShowLayout reviewsOrComments={<AllReviews show={show}/>}>
+    <SingleShowLayout showId={showId} reviewsOrComments={<AllReviews show={show}/>}>
       <div>
         <div className="show-text-wrapper">
           <p className="show-name">{show.Show?.name}</p>
