@@ -74,7 +74,14 @@ router.post("/", requireAuth, async (req, res) => {
 
 //update a review
 router.put("/:reviewId", requireAuth, async(req, res)=>{
-  const review = await Review.findByPk(req.params.reviewId);
+  const review = await Review.findByPk(req.params.reviewId, {
+    include:[
+      { model: Show, attributes: ["name", "startYear", "endYear", "image"] },
+      { model: Comment },
+      { model: ReviewLike },
+      {model: User, attributes:["username"]}
+    ]
+  });
 
   if(!review){
     return res.status(404).json({message: "Review couldn't be found."})
