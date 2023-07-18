@@ -2,7 +2,7 @@ import { useState } from "react";
 import './ReviewRatingInput.css';
 
 export default function ReviewRatingInput({onChange, disabled, rating}) {
-  const [activeRating, setActiveRating] = useState();
+  const [activeRating, setActiveRating] = useState(rating);
 
   return (
     <div className="rating-input">
