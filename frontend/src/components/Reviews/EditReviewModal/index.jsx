@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import ReviewRatingInput from "../ReviewRatingInput";
 import "./EditReviewModal.css";
-import {thunkEditReview} from "../../../store/reviews"
+import { thunkEditReview } from "../../../store/reviews";
+import OpenModalButton from "../../OpenModalButton";
+import DeleteReviewModal from "../DeleteReviewModal";
 
 export default function EditReviewModal({ review }) {
   const [body, setBody] = useState(review?.body);
@@ -80,7 +82,12 @@ export default function EditReviewModal({ review }) {
           {review.Show?.name}
           {ongoingShow}
         </div>
-        <textarea className="review-input-body" value={body} required onChange={(e) => setBody(e.target.value)}></textarea>
+        <textarea
+          className="review-input-body"
+          value={body}
+          required
+          onChange={(e) => setBody(e.target.value)}
+        ></textarea>
         <p className="character-counter" style={characterCounter()}>
           {body.length}/600
         </p>
@@ -91,6 +98,7 @@ export default function EditReviewModal({ review }) {
         </div>
         <button type="submit">SAVE</button>
       </form>
+      <OpenModalButton buttonText="DELETE" modalComponent={<DeleteReviewModal/>} title="PLEASE CONFIRM"/>
     </div>
   );
 }

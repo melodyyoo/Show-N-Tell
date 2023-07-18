@@ -4,7 +4,6 @@ const GET_POPULAR_REVIEWS = "reviews/getPopularReviews";
 const GET_REVIEW = "reviews/getReview";
 const POST_REVIEW = "reviews/postReview";
 const EDIT_REVIEW = "reviews/editReview";
-const DELETE_REVIEW = "reviews/deleteReview";
 
 /*********************************************************************************************************** */
 //ACTION CREATORS
@@ -36,12 +35,6 @@ const actionEditReview = (review) => {
   };
 };
 
-const actionDeleteReview = (reviewId) => {
-  return {
-    type: DELETE_REVIEW,
-    payload: reviewId,
-  };
-};
 
 /*********************************************************************************************************** */
 //THUNKS
@@ -97,16 +90,7 @@ export const thunkEditReview = (review, reviewId) => async (dispatch) => {
   }
 };
 
-export const thunkDeleteReview = (reviewId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/reviews/${reviewId}`, {
-    method: "DELETE",
-  });
 
-  if (res.ok) {
-    dispatch(actionDeleteReview(reviewId));
-
-  }
-};
 
 /*********************************************************************************************************** */
 //REDUCER
@@ -133,7 +117,7 @@ const reviewsReducer = (state = initialState, action) => {
         const editReviewState = { ...state, review: {} };
         editReviewState.review = action.payload;
         return editReviewState;
-    // case DELETE_REVIEW:
+
 
     default:
       return state;

@@ -7,6 +7,7 @@ const GET_SHOW_AND_REVIEWS = "shows/getShowsAndReviews"
 const POST_SHOW = 'shows/postShow'
 const EDIT_SHOW = 'shows/editShow'
 const DELETE_SHOW = 'shows/deleteShow'
+const DELETE_REVIEW = "reviews/deleteReview";
 
 
 
@@ -54,6 +55,13 @@ const actionDeleteShow = (showId) =>{
         payload: showId
     }
 }
+
+const actionDeleteReview = (reviewId, showId) => {
+    return {
+      type: DELETE_REVIEW,
+      payload:{ reviewId, showId}
+    };
+  };
 
 /*********************************************************************************************************** */
 //THUNKS
@@ -131,6 +139,16 @@ export const thunkDeleteShow = (showId) =>async(dispatch)=>{
     }
 }
 
+export const thunkDeleteReview = (reviewId, showId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/reviews/${reviewId}`, {
+      method: "DELETE",
+    });
+
+    if (res.ok) {
+      dispatch(actionDeleteReview(reviewId, showId));
+
+    }
+  };
 
 /*********************************************************************************************************** */
 //REDUCER
@@ -153,7 +171,7 @@ const showsReducer = (state=initialState, action) =>{
         case GET_SHOW_AND_REVIEWS:
             const showAndReviewState = {...state, show:{}};
             showAndReviewState.show = action.payload;
-            return showAndReviewState; 
+            return showAndReviewState;
         case POST_SHOW:
             const newShowState = {allShows:{...state.allShows}, show:action.payload};
             newShowState.allShows[action.payload.id] = action.payload;
@@ -167,6 +185,11 @@ const showsReducer = (state=initialState, action) =>{
             const currentAllShows = {...state.allShows};
             delete currentAllShows[action.payload];
             return {...state, allShows: currentAllShows}
+        // case DELETE_REVIEW:
+            // const newAllShows = {...state.allShows}
+            // const showId = action.payload.showId
+            // newAllShows[showId].Reviews = newAllShows[showId].Reviews.filter(review=> review.id !== action.payload.reviewId)
+            // return {show:state.show, allShows:newAllShows};
         default:
             return state
     }
