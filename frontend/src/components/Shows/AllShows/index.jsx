@@ -4,6 +4,8 @@ import { thunkGetAllShows } from "../../../store/shows";
 import ShowPoster from "../ShowPoster";
 import "./AllShows.css";
 import PopularReviews from "../../Reviews/PopularReviews";
+import SwiperCarousel from "../../SwiperCarousel";
+
 
 export default function AllShows() {
   const dispatch = useDispatch();
@@ -15,24 +17,15 @@ export default function AllShows() {
     dispatch(thunkGetAllShows());
   }, [dispatch]);
 
-  function randomShow() {
-    return shows[Math.floor(Math.random() * shows.length)];
-  }
-  const show = randomShow();
 
   return (
     <div>
       {sessionUser ? (
-        <h2 style={{ textAlign: "center", fontFamily: "'Lato',sans-serif" }}>
+        <h2 style={{ textAlign: "center", fontFamily: "'Josefin Sans', sans-serif", fontWeight: 700, marginTop:"30px"}}>
           Welcome Back, {sessionUser?.username}
         </h2>
       ): <h2 style={{visibility:"hidden"}}>asdf</h2>}
-      <div className="posters-wrapper">
-        <ShowPoster show={show} />
-        <ShowPoster show={randomShow()} />
-        <ShowPoster show={randomShow()} />
-        <ShowPoster show={randomShow()} />
-      </div>
+      <SwiperCarousel shows={shows}/>
       <PopularReviews/>
     </div>
   );
