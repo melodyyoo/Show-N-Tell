@@ -2,7 +2,7 @@ import { csrfFetch } from "./csrf"
 //TYPES
 const GET_POPULAR_REVIEWS = "reviews/getPopularReviews";
 const GET_REVIEW = "reviews/getReview";
-
+const POST_REVIEW = "reviews/postReview"
 
 /*********************************************************************************************************** */
 //ACTION CREATORS
@@ -16,6 +16,13 @@ const actionGetPopularReviews = (reviews) =>{
 const actionGetReview = (review) =>{
     return{
         type: GET_REVIEW,
+        payload: review
+    }
+}
+
+const actionPostReview = (review) =>{
+    return{
+        type: POST_REVIEW,
         payload: review
     }
 }
@@ -43,6 +50,24 @@ export const thunkGetReview = (reviewId) =>async(dispatch) =>{
     }
 }
 
+export const thunkPostReview = (review)=> async(dispatch) =>{
+    const res = await csrfFetch(`/api/reviews`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(review)
+    });
+
+    if(res.ok){
+        const newReview = await res.json();
+        dispatch(actionPostReview(newReview));
+        return newReview
+    }else{
+        const errors = await res.json();
+        return errors;
+    }
+
+}
+
 
 
 
@@ -64,7 +89,11 @@ const reviewsReducer = (state=initialState, action) =>{
         case GET_REVIEW:
             const reviewState = {...state, review:{}};
             reviewState.review = action.payload;
-            return reviewState; 
+            return reviewState;
+        case POST_REVIEW:
+            const reviewsState = {...state, review:{}};
+            reviewsState.review = action.payload;
+            return reviewsState;
         default:
             return state
     }
