@@ -1,0 +1,41 @@
+.filled > i {
+    color:  rgb(60, 225, 27);
+  }
+
+.empty > i{
+    color:  rgb(255, 253, 253);
+  }
+
+.rating-input {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 5px 0;
+    align-items: center;
+  }
+
+
+.each-star{
+    width:fit-content;
+}
+
+.post-review-form{
+    display:flex;
+    flex-direction: column;
+    margin: 0 20px 20px 20px;
+    justify-content: center;
+}
+
+.review-submit-button{
+  height: 30px;
+  background-color: var(--app-color);
+  box-shadow: 4px 4px 5px rgb(151, 150, 150);
+  cursor: pointer;
+  border-radius: 10px;
+  border-color: var(--app-color);
+}
+.review-submit-button:disabled{
+  background-color: white;
+  border-radius: 10px;
+  border-color: white;
+}
