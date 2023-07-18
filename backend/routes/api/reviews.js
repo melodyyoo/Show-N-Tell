@@ -30,7 +30,7 @@ router.get("/popular", async (req, res) => {
 router.get("/:reviewId", async (req, res) => {
   const review = await Review.findByPk(req.params.reviewId, {
     include: [
-      { model: Show, attributes: ["name", "startYear", "endYear"] },
+      { model: Show, attributes: ["name", "startYear", "endYear", "image"] },
       { model: Comment },
       { model: ReviewLike },
       {model: User, attributes:["username"]}
@@ -41,15 +41,35 @@ router.get("/:reviewId", async (req, res) => {
 });
 
 //create a review for a show
-router.post("/:reviewId", requireAuth, async (req, res) => {
-  const { body, rating, showLike } = req.body;
+router.post("/", requireAuth, async (req, res) => {
+  const { body, rating, showId, userId} = req.body;
+  
+  const error = { message: "Bad Request", errors: {} };
 
-  const review = await Review.findByPk(req.params.reviewId);
-
-  if (!review) {
-    res.status(404);
-    res.json({ message: "Review couldn't be found" });
+  if(body.length > 600)error.errors.body = "Review must be less than 600 characters."
+  if (!rating || typeof rating !== "number" || rating < 1 || rating > 5) {
+    error.errors.rating = "Rating must be an integer from 1 to 5";
   }
+
+  if (Object.keys(error.errors).length) {
+    res.status(400);
+    res.json(error);
+  }
+
+  let date_ob = new Date();
+  let date = ("0" + date_ob.getDate()).slice(-2);
+  let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+  let year = date_ob.getFullYear();
+
+  const newReview = await Review.create({
+    userId,
+    showId,
+    body,
+    rating,
+    watchedDate: year + "-" + month + "-" + date
+  });
+
+  res.status(201).json(newReview)
 });
 
 module.exports = router;

@@ -1,0 +1,25 @@
+.review-input-body{
+    color:black;
+    resize: none;
+    height: 180px;
+    width: 250px;
+}
+
+.show-poster{
+    height: 120px;
+    width: 100px;
+    margin-top: 40px;
+    border-radius: 5px;
+}
+
+.review-input-wrapper{
+    display: flex;
+    gap: 15px;
+    width: 400px;
+    justify-content: center;
+    margin: 20px 15px;
+}
+
+.show-year{
+    font-family:'Open Sans', sans-serif;
+}

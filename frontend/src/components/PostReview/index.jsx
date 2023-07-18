@@ -1,10 +1,17 @@
+import { useModal } from "../../context/Modal";
 import "./PostReview.css";
+import AddReviewModal from "../Reviews/AddReviewModal";
 
 export default function PostReview() {
+  const {setModalContent, setTitle} = useModal();
+  
   return (
     <div className="post-review-wrapper">
       <div className="post-review-review">
-        <i className="fa-solid fa-face-smile fa-2xl"></i>
+        <i onClick={()=>{
+          setModalContent(<AddReviewModal/>)
+          setTitle("ADD REVIEW")
+          }}className="fa-solid fa-face-smile fa-2xl"></i>
         <p>Review</p>
       </div>
       <div className="post-review-like">
