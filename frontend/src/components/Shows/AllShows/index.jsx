@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetAllShows } from "../../../store/shows";
-import ShowPoster from "../ShowPoster";
 import "./AllShows.css";
 import PopularReviews from "../../Reviews/PopularReviews";
 import SwiperCarousel from "../../SwiperCarousel";

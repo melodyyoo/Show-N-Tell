@@ -12,7 +12,6 @@ import { EffectCoverflow, Pagination } from 'swiper/modules';
 import ShowPoster from '../Shows/ShowPoster';
 
 export default function SwiperCarousel({shows}) {
-  console.log("SHOWS: ", shows)
   return (
     <>
       <Swiper
@@ -31,8 +30,8 @@ export default function SwiperCarousel({shows}) {
         modules={[EffectCoverflow, Pagination]}
         className="mySwiper"
       >
-      {shows.map((show, i)=> <SwiperSlide>
-          <ShowPoster show={show} key={i}/>
+      {shows.map((show, i)=> <SwiperSlide  key={i}>
+          <ShowPoster show={show}/>
         </SwiperSlide>)}
 
       </Swiper>
