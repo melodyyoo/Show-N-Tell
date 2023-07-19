@@ -18,6 +18,10 @@
 .show-details-wrapper{
     display: flex;
     gap: 30px;
+    margin-top: 50px;
+    position: sticky;
+    z-index: 3;
+
 }
 
 .show-text-wrapper{

@@ -7,6 +7,7 @@ import { thunkGetShowAndReview } from "../../store/shows";
 import { useEffect } from "react";
 import EditReviewModal from "../Reviews/EditReviewModal";
 import { useLocation } from "react-router-dom/";
+import "./SingleShowLayout.css";
 
 export default function SingleShowLayout({ showId, children, reviewsOrComments }) {
   const show = useSelector((state) => state.shows.show);
@@ -19,6 +20,9 @@ export default function SingleShowLayout({ showId, children, reviewsOrComments }
   return (
     <div>
       <img className="show-banner" alt="show-banner" src={show.Show?.banner} />
+      <div style={{position:"relative"}}>
+        <img className="banner-frame" alt="banner-frame" src="/banner-frame.svg" />
+      </div>
       <div className="show-details-wrapper">
         <img className="show-image" alt="show-poster" src={show.Show?.image} />
         {children}
@@ -32,7 +36,7 @@ export default function SingleShowLayout({ showId, children, reviewsOrComments }
 function EditOrReviewButton({ show }) {
   const sessionUser = useSelector((state) => state.session.user);
   const review = useSelector((state) => state.reviews.review);
-  const {pathname} = useLocation();
+  const { pathname } = useLocation();
 
   if (sessionUser?.id === show.Show?.User?.id) {
     return (
@@ -97,8 +101,10 @@ function EditOrReviewButton({ show }) {
         modalComponent={<EditReviewModal review={review} />}
       />
     );
-  }
-  else if(pathname.includes("shows") && show?.Reviews?.find(review=>review?.userId === sessionUser?.id)){
+  } else if (
+    pathname.includes("shows") &&
+    show?.Reviews?.find((review) => review?.userId === sessionUser?.id)
+  ) {
     return (
       <OpenModalButton
         style={{
@@ -118,10 +124,8 @@ function EditOrReviewButton({ show }) {
         buttonText="Edit or Delete Review"
         modalComponent={<EditReviewModal review={review} />}
       />
-    )
-  }
-  else {
+    );
+  } else {
     return <PostReview />;
   }
 }
-

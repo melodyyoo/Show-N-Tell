@@ -1,0 +1,15 @@
+/* .show-banner{
+    position: relative;
+    z-index:0
+} */
+
+.banner-frame{
+    position: absolute;
+    z-index: 1;
+    left: 0.1px;
+    width: 100%;
+    height: 900px;
+    top: -700px;;
+    min-width: 1247px;
+    max-width: 1451px;
+}
