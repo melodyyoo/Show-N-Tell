@@ -9,7 +9,7 @@ export default function SingleReview({ review }) {
     <div className="single-review">
       <div style={{ display: "flex" }}>
         <p className="review-user" onClick={()=>history.push(`/reviews/${review?.id}`)}>Review by {review?.User?.username}</p>
-        <div style={{ margin: "11px 0 0 10px" }}>{starIcons(review)}</div>
+        <div style={{ margin: "0 0 0 10px" }}>{starIcons(review)}</div>
       </div>
       <p>{review.body}</p>
       <div className="review-likes">

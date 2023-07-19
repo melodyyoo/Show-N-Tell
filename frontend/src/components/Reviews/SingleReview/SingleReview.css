@@ -8,6 +8,14 @@
 }
 
 .single-review{
-    max-width: 600px;
     border-bottom: gray 1px solid;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 20px 0 20px 0;
+    width: 600px;
+}
+
+.review-likes{
+    margin-bottom: 20px;
 }

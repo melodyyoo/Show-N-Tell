@@ -64,3 +64,9 @@
     margin-top: 50px;
     border-radius: 5px;
 }
+
+.show-info-wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 30px; 
+}

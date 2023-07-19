@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import "./SingleShow.css";
 import AllReviews from "../../Reviews/AllReviews";
 import SingleShowLayout from "../../SingleShowLayout";
@@ -27,7 +26,7 @@ export default function SingleShow() {
 
   return (
     <SingleShowLayout showId={showId} reviewsOrComments={<AllReviews show={show}/>}>
-      <div>
+      <div className="show-info-wrapper">
         <div className="show-text-wrapper">
           <p className="show-name">{show.Show?.name}</p>
           {ongoingShow}
