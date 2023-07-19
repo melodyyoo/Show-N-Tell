@@ -15,20 +15,6 @@
 
 
 
-.email {
-  text-align: center;
-  position: relative;
-  top: -20px;
-  border-bottom: solid rgb(175, 175, 175);
-  padding-bottom: 20px;
-}
-
-
-/* .open-modal-button{
-    all:unset;
-
-} */
-
 .profile-button {
   border: 1px solid rgb(0, 0, 0);
   height: 2.5rem;
@@ -67,4 +53,13 @@
   align-items: center;
   font-family: 'Open Sans', sans-serif;
   font-size: 15px;
+}
+
+.nav-bar{
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  gap: 500px;
+  background-color: 1A1F25;
+  height: 80px;
 }
