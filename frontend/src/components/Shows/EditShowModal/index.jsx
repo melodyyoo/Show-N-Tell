@@ -23,7 +23,7 @@ export default function EditShowModal({ show }) {
   const sessionUser = useSelector((state) => state.session.user);
 
   const characterCounter = () => {
-    if (synopsis.length > 600) {
+    if (synopsis?.length > 600) {
       return { color: "red" };
     }
   };

@@ -20,7 +20,7 @@ export default function EditReviewModal({ review }) {
   if (!review) return null;
 
   const characterCounter = () => {
-    if (body.length > 600) {
+    if (body?.length > 600) {
       return { color: "red" };
     }
   };
