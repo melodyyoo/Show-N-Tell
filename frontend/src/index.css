@@ -3,13 +3,16 @@ html * {
     font-family:'Playfair Display', serif;
     font-weight: 100;
     color: white;
+    margin: 0
 }
 
 
 :root{
     --app-color:  rgb(0, 0, 0);
     background-color:  #1a1f24;
+    background: linear-gradient(#1A1F25, rgb(27, 62, 81) );
 }
 
-/*
-rgb(109, 152, 100); */
+
+
+/* #1A1F25 */
