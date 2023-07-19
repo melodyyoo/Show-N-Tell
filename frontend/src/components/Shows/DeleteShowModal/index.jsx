@@ -17,7 +17,7 @@ export default function DeleteShowModal({ show }) {
   return (
     <form className="delete-show-modal" onSubmit={handleClick}>
       <p>
-        Are you sure you want to remove this show from Show N' Tell's library? This will delete all associated
+        Are you sure you want to remove this show from Show 'N Tell's library? This will delete all associated
         likes and reviews.
       </p>
       <div>
