@@ -1,0 +1,23 @@
+.landing-page-wrapper{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+video{
+    width:700px;
+    border-radius:10px;
+    position: relative;
+    margin-top: 150px;
+}
+
+.landing-page-tv{
+    position: absolute;
+
+}
+
+.landing-page-text{
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+}
