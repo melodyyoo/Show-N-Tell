@@ -2,6 +2,7 @@
     font-family: 'Open sans', sans-serif;
     font-size: 13px;
     cursor:pointer;
+    text-decoration: none;
 }
 .review-user:hover{
     color:rgb(162, 162, 162)
