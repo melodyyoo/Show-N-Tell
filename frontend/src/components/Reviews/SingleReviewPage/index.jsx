@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkGetReview } from "../../../store/reviews";
 import { useParams } from "react-router-dom";
 import starIcons from "../../../hooks/starIcons";
+import "./SingleReviewPage.css";
 
 export default function SingleReviewPage() {
   const dispatch = useDispatch();
@@ -32,22 +33,26 @@ export default function SingleReviewPage() {
   return (
     <SingleShowLayout showId={review.showId} reviewsOrComments={review.Comments}>
       <div>
-        <p>Review by {review.User?.username}</p>
-        <div>
-          <h1>{review.Show?.name}</h1>
-          {ongoingShow}
-          <div className="star-icons">{starIcons(review)}</div>
-        </div>
-        <p>Watched {review.watchedDate}</p>
-        <p>{review.body}</p>
-        <div className="review-likes">
-          <i
-            className="fa-solid fa-heart"
-            style={{ color: "gray", display: "flex", alignItems: "center" }}
-          ></i>
-          <p style={{ fontSize: "13px", color: "gray", marginLeft: "5px" }}>
-            {review.ReviewLikes?.length} likes
-          </p>
+        <p className="posted-by review-by">Review by {review.User?.username}</p>
+        <div className="single-review-page-text">
+          <div className="show-text-wrapper">
+            <h1 className="show-name">{review.Show?.name}</h1>
+            {ongoingShow}
+            <div style={{ marginBottom: "10px" }} className="star-icons">
+              {starIcons(review)}
+            </div>
+          </div>
+          <p>Watched {review.watchedDate}</p>
+          <p>{review.body}</p>
+          <div className="review-likes">
+            <i
+              className="fa-solid fa-heart"
+              style={{ color: "gray", display: "flex", alignItems: "center" }}
+            ></i>
+            <p style={{ fontSize: "13px", color: "gray", marginLeft: "5px" }}>
+              {review.ReviewLikes?.length} likes
+            </p>
+          </div>
         </div>
       </div>
     </SingleShowLayout>

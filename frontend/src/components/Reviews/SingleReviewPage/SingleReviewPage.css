@@ -1,0 +1,11 @@
+.single-review-page-text{
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.review-by{
+    border-bottom: solid gray 1px;
+    margin-bottom: 15px;
+}
