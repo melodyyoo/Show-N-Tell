@@ -31,7 +31,7 @@ export default function EditReviewModal({ review }) {
 
     const tempErrors = {};
 
-    if (body.length > 600) tempErrors.body = "Review must be 600 characters or less.";
+    if (body?.length > 600) tempErrors.body = "Review must be 600 characters or less.";
 
     const updatedReview = {
       body,
@@ -75,30 +75,49 @@ export default function EditReviewModal({ review }) {
   };
 
   return (
-    <div className="review-input-wrapper" style={{ display: "flex" }}>
-      <img className="show-poster" alt="show-poster" src={review.Show?.image}></img>
-      <form onSubmit={handleClick}>
-        <div style={{ display: "flex" }}>
-          {review.Show?.name}
-          {ongoingShow}
-        </div>
-        <textarea
-          className="review-input-body"
-          value={body}
-          required
-          onChange={(e) => setBody(e.target.value)}
-        ></textarea>
-        <p className="character-counter" style={characterCounter()}>
-          {body.length}/600
-        </p>
-        <div className="errors">{errors.body}</div>
-        <div>
-          Rating
-          <ReviewRatingInput required disabled={false} rating={rating} onChange={onChange} />
-        </div>
-        <button type="submit">SAVE</button>
-      </form>
-      <OpenModalButton buttonText="DELETE" modalComponent={<DeleteReviewModal/>} title="PLEASE CONFIRM"/>
+    <div style={{display: "flex", flexDirection: "column", alignItems:"center"}}>
+      <div className="review-input-wrapper" style={{ display: "flex" }}>
+        <img className="show-poster" alt="show-poster" src={review.Show?.image}></img>
+        <form className="edit-review-form" onSubmit={handleClick}>
+          <div style={{ display: "flex" }}>
+            {review.Show?.name}
+            {ongoingShow}
+          </div>
+          <textarea
+            className="review-input-body"
+            value={body}
+            required
+            onChange={(e) => setBody(e.target.value)}
+          ></textarea>
+          <p className="character-counter" style={characterCounter()}>
+            {body?.length}/600
+          </p>
+          <div className="errors">{errors.body}</div>
+          <div>
+            Rating
+            <ReviewRatingInput required disabled={false} rating={rating} onChange={onChange} />
+          </div>
+          <button className="submit-button" type="submit">SAVE</button>
+      <OpenModalButton
+        style={{
+          color: " white",
+          border: "none",
+          backgroundColor: "gray",
+          fontFamily: "'Open Sans', sans-serif",
+          width: "90px",
+          borderRadius: "10px",
+          height: "30px",
+          cursor:"pointer",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center"
+        }}
+        buttonText="DELETE"
+        modalComponent={<DeleteReviewModal />}
+        title="PLEASE CONFIRM"
+      />
+        </form>
+      </div>
     </div>
   );
 }
