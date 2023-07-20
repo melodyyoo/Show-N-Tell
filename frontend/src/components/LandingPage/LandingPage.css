@@ -9,16 +9,35 @@ video{
     width:700px;
     border-radius:10px;
     position: relative;
-    margin-top: 150px;
+    margin-top: 149px;
 }
 
 .landing-page-tv{
     position: absolute;
-
+    z-index: 1
 }
 
 .landing-page-text{
     font-family: 'Playfair Display', serif;
     font-weight: 700;
-    margin-bottom: 30px; 
+    margin-bottom: 30px;
+}
+
+.tv-button{
+    cursor:pointer;
+
+}
+
+.orange{
+    stroke: #9b5923;
+    stroke-width: 6px; ;
+}
+
+.blue{
+    stroke-width: 6px;
+    stroke: #376180;
+}
+.green{
+    stroke: #449544;
+    stroke-width: 6px;
 }
