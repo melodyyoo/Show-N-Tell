@@ -6,9 +6,9 @@
 }
 
 .show-poster{
-    height: 120px;
-    width: 100px;
-    margin-top: 40px;
+    height: 160px;
+    width: 125px;
+    margin-top: 28px;
     border-radius: 5px;
 }
 
@@ -17,9 +17,19 @@
     gap: 15px;
     width: 400px;
     justify-content: center;
-    margin: 20px 15px;
+    margin: 20px 20px;
 }
 
 .show-year{
     font-family:'Open Sans', sans-serif;
+}
+
+.edit-review-form{
+    display: flex;
+    flex-direction: column;
+    gap: 3px
+}
+
+.character-counter{
+    margin-top: 15px;
 }
