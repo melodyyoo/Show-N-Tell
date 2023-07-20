@@ -13,3 +13,7 @@
     min-width: 1247px;
     max-width: 1451px;
 }
+
+.show-image:hover{
+    border: 3px rgb(2, 181, 2) solid;
+}

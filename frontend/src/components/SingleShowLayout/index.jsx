@@ -8,10 +8,12 @@ import { useEffect } from "react";
 import EditReviewModal from "../Reviews/EditReviewModal";
 import { useLocation } from "react-router-dom/";
 import "./SingleShowLayout.css";
+import { useHistory } from "react-router-dom";
 
 export default function SingleShowLayout({ showId, children, reviewsOrComments }) {
   const show = useSelector((state) => state.shows.show);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(thunkGetShowAndReview(showId));
@@ -21,10 +23,10 @@ export default function SingleShowLayout({ showId, children, reviewsOrComments }
     <div>
       <img className="show-banner" alt="show-banner" src={show.Show?.banner} />
       <div style={{position:"relative"}}>
-        <img className="banner-frame" alt="banner-frame" src="/banner-frame.svg" />
+        <img className="banner-frame" alt="banner-frame" src="/banner-frame.svg"/>
       </div>
       <div className="show-details-wrapper">
-        <img className="show-image" alt="show-poster" src={show.Show?.image} />
+        <img className="show-image" alt="show-poster" src={show.Show?.image} onClick={()=>history.push(`/shows/${showId}`)}/>
         {children}
         <EditOrReviewButton show={show} />
       </div>
