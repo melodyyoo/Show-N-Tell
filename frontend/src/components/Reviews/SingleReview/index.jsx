@@ -1,14 +1,13 @@
 import "./SingleReview.css";
 import starIcons from "../../../hooks/starIcons";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function SingleReview({ review }) {
-  const history = useHistory();
 
   return (
     <div className="single-review">
       <div style={{ display: "flex" }}>
-        <p className="review-user" onClick={()=>history.push(`/reviews/${review?.id}`)}>Review by {review?.User?.username}</p>
+        <Link className="review-user" to={`/reviews/${review?.id}`}>Review by {review?.User?.username}</Link>
         <div style={{ margin: "0 0 0 10px" }}>{starIcons(review)}</div>
       </div>
       <p>{review.body}</p>
