@@ -17,10 +17,10 @@
 
 .show-details-wrapper{
     display: flex;
-    gap: 30px;
-    margin-top: 50px;
+    margin:20px 60px 30px 60px;
     position: sticky;
     z-index: 3;
+    justify-content: space-around;
 
 }
 
@@ -39,7 +39,7 @@
 }
 
 .show-synopsis{
-    max-width: 600px;
+    width: 600px;
 }
 
 .directed-by, .show-year{
@@ -68,5 +68,5 @@
 .show-info-wrapper{
     display: flex;
     flex-direction: column;
-    gap: 30px; 
+    gap: 30px;
 }
