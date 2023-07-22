@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { useHistory } from "react-router-dom";
 import { useModal } from "../../../context/Modal";
 import { thunkEditShow } from "../../../store/shows";
 import OpenModalButton from "../../OpenModalButton";
 import DeleteShowModal from "../DeleteShowModal";
+import LoadingSpinner from "../../LoadingScreen";
 
 export default function EditShowModal({ show }) {
   const dispatch = useDispatch();
@@ -14,33 +14,36 @@ export default function EditShowModal({ show }) {
   const [startYear, setStartYear] = useState(show.Show.startYear);
   const [endYear, setEndYear] = useState(show.Show.endYear);
   const [genre, setGenre] = useState(show.Show.genre);
-  const [image, setImage] = useState(show.Show.image);
-  const [banner, setBanner] = useState(show.Show.banner);
+  const [image, setImage] = useState("");
+  const [banner, setBanner] = useState("");
   const [errors, setErrors] = useState({});
-  // const [validationObject, setValidationObject] = useState({});
   const { closeModal } = useModal();
-  //   const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
+  const [isLoading , setIsLoading] = useState(false);
 
   const characterCounter = () => {
     if (synopsis?.length > 600) {
       return { color: "red" };
     }
   };
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors({});
+
+    const filesArr = [];
+    filesArr.push(image);
+    filesArr.push(banner);
+
 
     const updatedShow = {
       name,
       director,
       synopsis,
       startYear,
-      endYear,
+      endYear: endYear === "Ongoing" ? null : endYear,
       genre,
-      image,
-      banner,
+      images: filesArr,
       userId: sessionUser.id,
     };
 
@@ -53,8 +56,9 @@ export default function EditShowModal({ show }) {
     if (tempErrorsArray.length > 0) {
       setErrors(tempErrors);
     } else {
+      setIsLoading(true)
       dispatch(thunkEditShow(updatedShow, show?.Show?.id))
-        .then((show) => {
+        .then(() => {
           closeModal();
         })
         .catch((data) => {
@@ -75,17 +79,16 @@ export default function EditShowModal({ show }) {
       <form onSubmit={handleSubmit}>
         <label style={{ margin: "0 70px" }}>
           Title
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
         </label>
         <label>
           Director
-          <input type="text" value={director} onChange={(e) => setDirector(e.target.value)} required />
+          <input type="text" value={director} onChange={(e) => setDirector(e.target.value)}/>
         </label>
         <label htmlFor="synopsis" style={{ margin: "0 193px 0 0" }}>
           Synopsis
         </label>
         <textarea
-          required
           id="synopsis"
           className="synopsis-input"
           style={{ resize: "none", color: "black" }}
@@ -100,7 +103,6 @@ export default function EditShowModal({ show }) {
           <label>
             Start Year
             <select
-              required
               id="select"
               value={startYear}
               style={{ color: "black" }}
@@ -119,14 +121,13 @@ export default function EditShowModal({ show }) {
           <label>
             End Year
             <select
-              required
               id="select"
-              value={endYear ? endYear : null}
+              value={endYear ? endYear : ""}
               style={{ color: "black" }}
               onChange={(e) => setEndYear(e.target.value)}
             >
-              <option defaultValue=" "></option>
-              <option label="Ongoing" value={""}></option>
+              <option defaultValue=""></option>
+              <option label="Ongoing" value={"Ongoing"}></option>
               {years.map((year, idx) => {
                 return (
                   <option value={year} key={idx}>
@@ -136,13 +137,12 @@ export default function EditShowModal({ show }) {
               })}
             </select>
           </label>
-          <div className="errors">{errors.endYear}</div>
         </div>
+          <div className="errors">{errors.endYear}</div>
         <label>
           Genre
           <select
             value={genre}
-            required
             id="select"
             style={{ color: "black" }}
             onChange={(e) => setGenre(e.target.value)}
@@ -159,12 +159,28 @@ export default function EditShowModal({ show }) {
         </label>
         <label>
           Show poster
-          <input type="text" value={image} onChange={(e) => setImage(e.target.value)} required />
+          <input type="file" onChange={(e) => setImage(e.target.files[0])} />
         </label>
         <label>
           Banner image
-          <input type="text" value={banner} onChange={(e) => setBanner(e.target.value)} required />
+          <input type="file"  onChange={(e) => setBanner(e.target.files[0])}  />
         </label>
+        {isLoading && (
+          <div
+            style={{
+              width: "389.6px",
+              height: "636px",
+              position: "absolute",
+              zIndex: 5,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor:" #12121280"
+            }}
+          >
+            <LoadingSpinner />
+          </div>
+        )}
         <div>
           <button className="submit-button" type="submit">
             SAVE
