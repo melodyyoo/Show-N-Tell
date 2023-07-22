@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useModal } from "../../../context/Modal";
 import "./AddShowModal.css";
 import { thunkPostShow } from "../../../store/shows";
+import LoadingSpinner from "../../LoadingScreen";
 
 export default function AddShowModal() {
   const dispatch = useDispatch();
@@ -16,10 +17,10 @@ export default function AddShowModal() {
   const [image, setImage] = useState("");
   const [banner, setBanner] = useState("");
   const [errors, setErrors] = useState({});
-  // const [validationObject, setValidationObject] = useState({});
   const { closeModal } = useModal();
   const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
+  const [isLoading, setIsLoading] = useState(false);
 
   const characterCounter = () => {
     if (synopsis?.length > 600) {
@@ -36,10 +37,9 @@ export default function AddShowModal() {
       director,
       synopsis,
       startYear,
-      endYear,
+      endYear: endYear === "Ongoing" ? null: endYear,
       genre,
-      image,
-      banner,
+      images: [image, banner],
       userId: sessionUser.id,
     };
 
@@ -56,6 +56,7 @@ export default function AddShowModal() {
         .then((show) => {
           closeModal();
           history.push(`/shows/${show.id}`);
+          setIsLoading(false);
         })
         .catch((data) => {
           if (data && data.errors) {
@@ -125,7 +126,7 @@ export default function AddShowModal() {
               onChange={(e) => setEndYear(e.target.value)}
             >
               <option defaultValue=" "></option>
-              <option label="Ongoing" value={""}></option>
+              <option label="Ongoing" value={"Ongoing"}></option>
               {years.map((year, idx) => {
                 return (
                   <option value={year} key={idx}>
@@ -152,13 +153,29 @@ export default function AddShowModal() {
         </label>
         <label>
           Show poster
-          <input type="text" value={image} onChange={(e) => setImage(e.target.value)} required />
+          <input type="file" multiple onChange={(e) => setImage(e.target.files[0])} required />
         </label>
         <label>
           Banner image
-          <input type="text" value={banner} onChange={(e) => setBanner(e.target.value)} required />
+          <input type="file" multiple onChange={(e) => setBanner(e.target.files[0])} required />
         </label>
-        <button className="submit-button" type="submit">
+        {isLoading && (
+          <div
+            style={{
+              width: "389.6px",
+              height: "636px",
+              position: "absolute",
+              zIndex: 5,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor:" #12121280"
+            }}
+          >
+            <LoadingSpinner />
+          </div>
+        )}
+        <button className="submit-button" type="submit" onClick={()=> setIsLoading(true)}>
           Submit
         </button>
       </form>

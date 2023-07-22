@@ -76,7 +76,7 @@ router.post("/", requireAuth, multipleMulterUpload("images"), async (req, res) =
     director,
     synopsis,
     startYear,
-    endYear,
+    endYear: endYear ?? null,
     genre,
     image,
     banner,

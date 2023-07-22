@@ -96,7 +96,7 @@ export const thunkPostShow = (show) => async (dispatch) => {
   formData.append("director", director);
   formData.append("synopsis", synopsis);
   formData.append("startYear", startYear);
-  formData.append("endYear", endYear);
+  if(endYear)formData.append("endYear", endYear);
   formData.append("genre", genre);
   formData.append("userId", userId);
 
@@ -124,7 +124,6 @@ export const thunkPostShow = (show) => async (dispatch) => {
 
 export const thunkEditShow = (show, showId) => async (dispatch) => {
   const { name, director, synopsis, startYear, endYear, genre, userId, images } = show;
-  console.log("ENDYEAR IN THUNK: ", endYear);
   const formData = new FormData();
   formData.append("name", name);
   formData.append("director", director);
@@ -133,8 +132,8 @@ export const thunkEditShow = (show, showId) => async (dispatch) => {
   if (endYear) formData.append("endYear", endYear);
   formData.append("genre", genre);
   formData.append("userId", userId);
-  if (images[0]?.name) formData.append("poster", images[0].name);
-  if (images[1]?.name) formData.append("biggerPoster", images[1].name);
+  if (images[0]?.name)formData.append("poster", images[0].name);
+  if (images[1]?.name)formData.append("biggerPoster", images[1].name);
 
   if (images && images.length !== 0) {
     for (var i = 0; i < images.length; i++) {
