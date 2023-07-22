@@ -3,6 +3,12 @@ const router = express.Router();
 
 const { Show, Review, ReviewLike, ShowLike, User } = require("../../db/models");
 const { requireAuth } = require("../../utils/auth");
+const {
+  multipleMulterUpload,
+  multiplePublicFileUpload,
+  singleMulterUpload,
+  singlePublicFileUpload,
+} = require("../../awsS3");
 
 //get all shows
 router.get("/", async (req, res) => {
@@ -48,13 +54,17 @@ router.get("/:showId", async (req, res) => {
 });
 
 //post a show
-router.post("/", requireAuth, async (req, res) => {
-  const { name, director, synopsis, startYear, endYear, genre, image, banner, userId} = req.body;
+router.post("/", requireAuth, multipleMulterUpload("images"), async (req, res) => {
+  const { name, director, synopsis, startYear, endYear, genre, userId } = req.body;
+  const [image, banner] = await Promise.all([
+    singlePublicFileUpload(req.files[0]),
+    singlePublicFileUpload(req.files[1]),
+  ]);
 
   const error = { message: "Bad Request", errors: {} };
 
   if (synopsis.length > 600) error.errors.synopsis = "Synopsis must be less than 600 characters.";
-  if (endYear && (startYear > endYear)) error.errors.endYear = "Start year must come before the end year.";
+  if (endYear && startYear > endYear) error.errors.endYear = "Start year must come before the end year.";
 
   if (Object.keys(error.errors).length) {
     res.status(400);
@@ -70,7 +80,7 @@ router.post("/", requireAuth, async (req, res) => {
     genre,
     image,
     banner,
-    userId
+    userId,
   });
 
   res.status(201);
@@ -78,61 +88,69 @@ router.post("/", requireAuth, async (req, res) => {
 });
 
 //edit a show
-router.put("/:showId", requireAuth, async(req, res)=>{
+router.put("/:showId", requireAuth, multipleMulterUpload("images"), async (req, res) => {
   const show = await Show.findByPk(req.params.showId);
-
-  if(!show){
+  if (!show) {
     return res.status(404).json({
       message: "Show couldn't be found",
     });
   }
 
-  if(show.dataValues.userId !== req.user.id){
+  if (show.dataValues.userId !== req.user.id) {
     res.status(403);
     return res.json({ message: "Forbidden" });
   }
 
-  const { name, director, synopsis, startYear, endYear, genre, image, banner, userId} = req.body;
+  const { name, director, synopsis, startYear, endYear, genre, userId, poster, biggerPoster } = req.body;
+  let image, banner;
+
+  if (poster) {
+    image = await singlePublicFileUpload(req.files[0]);
+  }
+  if (biggerPoster && poster) {
+    banner = await singlePublicFileUpload(req.files[1]);
+  } else if (biggerPoster) {
+    banner = await singlePublicFileUpload(req.files[0]);
+  }
+
   const error = { message: "Bad Request", errors: {} };
 
   if (synopsis.length > 600) error.errors.synopsis = "Synopsis must be less than 600 characters.";
-  if (endYear && (startYear > endYear)) error.errors.endYear = "Start year must come before the end year.";
+  if (endYear && startYear > endYear) error.errors.endYear = "Start year must come before the end year.";
 
   if (Object.keys(error.errors).length) {
     res.status(400);
     return res.json(error);
   }
-  show.set({
+
+  await show.update({
     name,
     director,
     synopsis,
     startYear,
-    endYear,
     genre,
-    image,
-    banner,
-    userId
+    image: image ?? show.image,
+    banner: banner ?? show.banner,
+    userId,
+    endYear: endYear ?? null,
   });
   await show.save();
   return res.json(show);
-})
-
-
-
+});
 
 //delete a show
-router.delete('/:showId', requireAuth, async(req,res)=>{
+router.delete("/:showId", requireAuth, async (req, res) => {
   const show = await Show.findByPk(req.params.showId);
 
-  if(!show){
-   return res.status(404).json({message:"Show couldn't be found."});
+  if (!show) {
+    return res.status(404).json({ message: "Show couldn't be found." });
   }
-  if(show.dataValues.userId !== req.user.id){
-    return res.status(403).json({message:"Forbidden."});
+  if (show.dataValues.userId !== req.user.id) {
+    return res.status(403).json({ message: "Forbidden." });
   }
 
   await show.destroy();
-  return res.json({message: "Successfully deleted."})
-})
+  return res.json({ message: "Successfully deleted." });
+});
 
 module.exports = router;
