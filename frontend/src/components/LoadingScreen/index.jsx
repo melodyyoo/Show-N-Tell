@@ -8,7 +8,7 @@ export default function LoadingSpinner() {
         <div></div>
         <div></div>
       </div>
-      <p>Large files may take some time :)</p>
+      <p style={{ fontFamily: "'Josefin Sans', sans-serif" }}>Large files may take some time</p>
     </>
   );
 }

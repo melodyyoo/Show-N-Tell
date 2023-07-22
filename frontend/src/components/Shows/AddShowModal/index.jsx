@@ -169,7 +169,9 @@ export default function AddShowModal() {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              backgroundColor:" #12121280"
+              backgroundColor:" #12121280",
+              flexDirection: "column",
+              gap: "10px"
             }}
           >
             <LoadingSpinner />

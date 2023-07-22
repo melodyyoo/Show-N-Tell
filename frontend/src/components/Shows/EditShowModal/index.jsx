@@ -26,7 +26,7 @@ export default function EditShowModal({ show }) {
       return { color: "red" };
     }
   };
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors({});
@@ -169,13 +169,15 @@ export default function EditShowModal({ show }) {
           <div
             style={{
               width: "389.6px",
-              height: "636px",
+              height: "700px",
               position: "absolute",
               zIndex: 5,
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              backgroundColor:" #12121280"
+              backgroundColor:" #12121280",
+              flexDirection: "column",
+              gap: "20px"
             }}
           >
             <LoadingSpinner />
