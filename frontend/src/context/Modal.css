@@ -27,6 +27,10 @@
     overflow-y:scroll;
   }
 
+  #modal-content::-webkit-scrollbar {
+    width: 0;
+  }
+
   .modal-header{
     display:flex;
     justify-content: space-between;
