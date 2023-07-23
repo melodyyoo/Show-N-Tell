@@ -42,7 +42,7 @@ export default function SingleReviewPage() {
               {starIcons(review)}
             </div>
           </div>
-          <p style={{fontFamily: "'Open Sans', sans-serif"}}>Watched {review.watchedDate}</p>
+          <p style={{fontFamily: "'Open Sans', sans-serif"}}>Watched {convertDate(review)}</p>
           <p style={{wordBreak: "break-word"}}>{review.body}</p>
           <div className="review-likes">
             <i
@@ -57,4 +57,16 @@ export default function SingleReviewPage() {
       </div>
     </SingleShowLayout>
   );
+}
+
+function convertDate(review){
+  return new Date(review?.watchedDate).toLocaleDateString(
+    "en-US",
+    {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    }
+  );
+
 }
