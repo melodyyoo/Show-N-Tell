@@ -9,7 +9,7 @@
     cursor:pointer;
 }
 .review-poster:hover{
-    border:#05B505 3px solid
+    border:#05B505 3px solid;
 }
 
 .single-review-wrapper{
@@ -24,7 +24,11 @@
     font-size:18px;
     margin:0;
     font-weight: 800;
-    font-family: 'Josefin Sans', sans-serif
+    font-family: 'Josefin Sans', sans-serif;
+    cursor:pointer;
+}
+.review-name:hover{
+    color: #66B9EF;
 }
 
 .review-likes{
