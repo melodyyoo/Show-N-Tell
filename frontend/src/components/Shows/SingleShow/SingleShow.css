@@ -36,12 +36,12 @@
     display: flex;
     align-items: center;
     font-family: 'Josefin Sans', sans-serif;
-    word-break: break-all;
+    word-break: break-word;
 }
 
 .show-synopsis{
     width: 600px;
-    word-break: break-all;
+    word-break: break-word;
 }
 
 .directed-by, .show-year{
@@ -50,7 +50,7 @@
     display: flex;
     align-items: center;
     font-family: 'Josefin Sans', sans-serif;
-    word-break: break-all;
+    word-break: break-word;
 }
 
 .posted-by{

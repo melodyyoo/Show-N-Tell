@@ -43,7 +43,7 @@ export default function SingleReviewPage() {
             </div>
           </div>
           <p>Watched {review.watchedDate}</p>
-          <p style={{wordBreak: "break-all"}}>{review.body}</p>
+          <p style={{wordBreak: "break-word"}}>{review.body}</p>
           <div className="review-likes">
             <i
               className="fa-solid fa-heart"

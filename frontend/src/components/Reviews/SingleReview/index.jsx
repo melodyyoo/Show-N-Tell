@@ -10,7 +10,7 @@ export default function SingleReview({ review }) {
         <Link className="review-user" to={`/reviews/${review?.id}`}>Review by {review?.User?.username}</Link>
         <div style={{ margin: "0 0 0 10px" }}>{starIcons(review)}</div>
       </div>
-      <p>{review.body}</p>
+      <p style={{wordBreak: "break-word"}}>{review.body}</p>
       <div className="review-likes">
         <i className="fa-solid fa-heart" style={{ color: "gray", display: "flex", alignItems: "center" }}></i>
         <p style={{ fontSize: "13px", color: "gray", marginLeft: "5px" }}>{review.likes} likes</p>
