@@ -35,10 +35,10 @@
 
 .user-of-review{
     display: flex;
+    margin-bottom: 15px;
 }
 
 .star-icons{
-    padding-top: 14px;
     margin-left: 10px;
 }
 
