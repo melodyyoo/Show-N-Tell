@@ -91,7 +91,7 @@ export default function AddReviewModal() {
           Rating
           <ReviewRatingInput required disabled={false} rating={rating} onChange={onChange} />
         </div>
-        <button type="submit">SAVE</button>
+        <button style={{cursor:"pointer"}} type="submit">SAVE</button>
       </form>
     </div>
   );

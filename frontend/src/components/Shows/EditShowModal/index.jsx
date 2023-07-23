@@ -184,7 +184,7 @@ export default function EditShowModal({ show }) {
           </div>
         )}
         <div>
-          <button className="submit-button" type="submit">
+          <button style={{cursor:"pointer"}} className="submit-button" type="submit">
             SAVE
           </button>
           <OpenModalButton
