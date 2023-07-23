@@ -14,21 +14,13 @@ form {
     margin-bottom: 2rem;
     width: 10rem;
     height: 2rem;
-    background-color: var(--app-color);
-    border-radius: 10px;
+    border-radius: 5px;
     cursor:pointer;
     color: black;
+    background-color: #09B509;
+
 }
 
-.submit-button:disabled{
-    width: 10rem;
-    height: 2rem;
-    background-color: white;
-}
-
-h1 {
-  text-align: center;
-}
 
 input {
   display: flex;
@@ -39,6 +31,7 @@ input {
 .errors{
     font-size: 13px;
     text-align: center;
+    color: red;
 }
 
 label{

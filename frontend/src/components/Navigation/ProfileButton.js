@@ -56,6 +56,7 @@ function ProfileButton({ user }) {
               />
               <OpenModalButton
                 buttonText="CREATE ACCOUNT"
+                title="JOIN SHOW N' TELL"
                 modalComponent={<SignupFormModal />}
               />
             </div>

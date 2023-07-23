@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as sessionActions from "../../store/session";
@@ -13,29 +13,29 @@ function SignupFormModal() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
-  const [validationObject, setValidationObject] = useState({});
   const { closeModal } = useModal();
-
-  useEffect(()=>{
-    const errorsObject = {};
-
-    if(!email)errorsObject.email = 'Email required';
-    if(!username)errorsObject.username = 'Username required';
-    if(username.length < 4)errorsObject.username='Username must be at least 4 characters';
-    if(!password) errorsObject.password = 'Password required';
-    if(password.length < 6)errorsObject.password = 'Password must be at least 6 characters';
-    if(!firstName)errorsObject.firstName = 'First name required';
-    if(!lastName)errorsObject.lastName = 'Last name required';
-    if(!confirmPassword) errorsObject.confirmPassword = 'Confirm password required';
-
-    setValidationObject(errorsObject);
-  },[email, username, password, firstName, lastName, confirmPassword])
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (password === confirmPassword) {
-      setErrors({});
-      return dispatch(
+    setErrors({});
+
+    const tempErrors = {};
+    if (!email) tempErrors.email = "Email required";
+    if (!username) tempErrors.username = "Username required";
+    if (username.length < 4) tempErrors.username = "Username must be at least 4 characters";
+    if (!password) tempErrors.password = "Password required";
+    if (password.length < 6) tempErrors.password = "Password must be at least 6 characters";
+    if (!firstName) tempErrors.firstName = "First name required";
+    if (!lastName) tempErrors.lastName = "Last name required";
+    if (!confirmPassword) tempErrors.confirmPassword = "Confirm password required";
+    if (password !== confirmPassword)
+      tempErrors.passwordMatch = "Confirm Password field must be the same as the Password field.";
+
+    const tempErrorsArray = Object.values(tempErrors);
+    if (tempErrorsArray.length > 0) {
+      setErrors(tempErrors);
+    } else {
+      dispatch(
         sessionActions.signup({
           email,
           username,
@@ -43,72 +43,42 @@ function SignupFormModal() {
           lastName,
           password,
         })
-      )
-        .then(closeModal)
-        .catch(async (res) => {
-          const data = await res.json();
-          if (data && data.errors) {
-            setErrors(data.errors);
-          }
-        });
+      ).then(closeModal)
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) {
+          setErrors(data.errors);
+        }
+      });
     }
-    return setErrors({
-      confirmPassword: "Confirm Password field must be the same as the Password field"
-    });
   };
 
   return (
     <div className="signup-modal">
-      <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
         <label>
           Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+          <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} required />
         </label>
         {errors.email && <p className="errors">{errors.email}</p>}
         <label>
           Username
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
+          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
         </label>
         {errors.username && <p className="errors">{errors.username}</p>}
         <label>
           First Name
-          <input
-            type="text"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            required
-          />
+          <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} required />
         </label>
         {errors.firstName && <p className="errors">{errors.firstName}</p>}
         <label>
           Last Name
-          <input
-            type="text"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            required
-          />
+          <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} required />
         </label>
         {errors.lastName && <p className="errors">{errors.lastName}</p>}
         <label>
           Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
         </label>
         {errors.password && <p className="errors">{errors.password}</p>}
         <label>
@@ -120,10 +90,11 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.confirmPassword && (
-          <p className="errors">{errors.confirmPassword}</p>
-        )}
-        <button disabled={Object.keys(validationObject).length}className="submit-button" type="submit">Sign Up</button>
+        {errors.confirmPassword && <p className="errors">{errors.confirmPassword}</p>}
+        {errors.passwordMatch && <p className="errors">{errors.passwordMatch}</p>}
+        <button className="submit-button" type="submit">
+          SIGN UP
+        </button>
       </form>
     </div>
   );
