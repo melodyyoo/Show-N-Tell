@@ -42,7 +42,7 @@ export default function SingleReviewPage() {
               {starIcons(review)}
             </div>
           </div>
-          <p>Watched {review.watchedDate}</p>
+          <p style={{fontFamily: "'Open Sans', sans-serif"}}>Watched {review.watchedDate}</p>
           <p style={{wordBreak: "break-word"}}>{review.body}</p>
           <div className="review-likes">
             <i
