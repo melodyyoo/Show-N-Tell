@@ -12,13 +12,12 @@ form {
 
 .submit-button{
     margin-bottom: 2rem;
-    width: 10rem;
+    width: 5rem;
     height: 2rem;
     border-radius: 5px;
     cursor:pointer;
-    color: black;
     background-color: #09B509;
-
+    font-size: 12px;
 }
 
 
