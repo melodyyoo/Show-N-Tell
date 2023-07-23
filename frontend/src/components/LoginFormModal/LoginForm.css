@@ -10,21 +10,27 @@ input{
 
 .demo-user-button{
     margin-bottom: 2rem;
-    width: 10rem;
+    width: 5.3rem;
     height: 2rem;
-    border-radius: 10px;
-    background-color: var(--app-color);
+    border-radius: 5px;
     cursor:pointer;
-    border-color: var(--app-color);
+    border: none;
+    font-size: 12px;
+    font-family: "Open Sans", sans-serif;
+    background-color: #EF8733;
 }
 .log-in-button{
-    width: 10rem;
+    width: 5.3rem;
     height: 2rem;
-    background-color: var(--app-color);
-    border-radius: 10px;
+    border-radius: 5px;
     cursor:pointer;
-    border-color: var(--app-color);
     color: black;
+    border: none;
+    font-size: 12px;
+    font-family: "Open Sans", sans-serif;
+    background-color: #09B509;
+    color: white;
+
 }
 
 .log-in-button:disabled{
