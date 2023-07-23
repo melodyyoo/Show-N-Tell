@@ -9,13 +9,11 @@ export default function ShowPoster({ show }) {
       <div className="poster-stats">
         <div style={{display: "flex"}}>
           <i className="fa-solid fa-heart" style={{ color: "#EF8832" }}/>
-          <p style={{margin:0, color:"gray"}}>{show?.showLikes}</p>
+          <p className="poster-count">{show?.showLikes}</p>
         </div>
         <div style={{display: "flex"}}>
           <i className="fa-solid fa-comment" style={{ color: "#66B9EF" }}/>
-          <p style={{margin: 0, color:"gray"}}>{show?.reviewsCount}</p>
-        </div>
-        <div style={{display: "flex"}}>
+          <p className="poster-count">{show?.reviewsCount}</p>
         </div>
       </div>
     </div>
