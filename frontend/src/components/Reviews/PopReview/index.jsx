@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import starIcons from "../../../hooks/starIcons";
 import "./PopReview.css";
 
@@ -13,13 +14,12 @@ export default function PopReview({ review }) {
       ongoingShow = <p style={{ margin: "2px 0 0 10px", fontFamily:"'Josefin Sans', sans-serif" }}>{review?.Show?.startYear}-{review?.Show?.endYear}</p>
     }
 
-
-  return (
+    return (
     <div className="single-review-wrapper">
-      <img className="review-poster" alt="review-poster" src={review.Show?.image}></img>
+      <Link to={`/shows/${review?.showId}`} ><img className="review-poster" alt="review-poster" src={review.Show?.image}></img></Link>
       <div>
         <div style={{ display: "flex" }}>
-          <p className="review-name">{review.Show?.name}</p>
+          <Link style={{textDecoration: "none"}}to={`/reviews/${review?.id}`}><p className="review-name">{review.Show?.name}</p></Link>
           {ongoingShow}
         </div>
         <div className="user-of-review">
