@@ -189,8 +189,8 @@ export default function EditShowModal({ show }) {
             <LoadingSpinner />
           </div>
         )}
-        <div>
-          <button style={{ cursor: "pointer" }} className="submit-button" type="submit">
+        <div style={{display:"flex", gap:"5px"}}>
+          <button style={{ cursor: "pointer", marginBottom:"20px" }} className="submit-button" type="submit">
             SAVE
           </button>
           <OpenModalButton
@@ -198,11 +198,11 @@ export default function EditShowModal({ show }) {
             style={{
               cursor: "pointer",
               backgroundColor: "gray",
-              borderRadius: "10px",
+              borderRadius: "5px",
               width: "70px",
-              height: "30px",
+              height: "2rem",
               fontFamily: "'Open Sans', sans-serif",
-              fontSize: "13px",
+              fontSize: "12px",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
