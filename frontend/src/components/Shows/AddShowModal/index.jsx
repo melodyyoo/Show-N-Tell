@@ -185,7 +185,7 @@ export default function AddShowModal() {
           </div>
         )}
         <button className="submit-button" type="submit">
-          Submit
+          SAVE
         </button>
       </form>
     </div>
