@@ -91,7 +91,7 @@ export default function AddReviewModal() {
             onChange={(e) => setBody(e.target.value)}
           ></textarea>
           </div>
-          <p className="character-counter" style={characterCounter()}>
+          <p className="review-character-counter" style={characterCounter()}>
             {body.length}/600
           </p>
           <div className="errors">{errors.body}</div>
