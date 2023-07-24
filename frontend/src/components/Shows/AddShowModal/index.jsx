@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {  useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../../context/Modal";
@@ -21,6 +21,7 @@ export default function AddShowModal() {
   const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
   const [isLoading, setIsLoading] = useState(false);
+
 
   const characterCounter = () => {
     if (synopsis?.length > 600) {
@@ -47,11 +48,15 @@ export default function AddShowModal() {
 
     if (synopsis.length > 600) tempErrors.synopsis = "Synopsis must be less than 600 characters.";
     if (endYear && startYear > endYear) tempErrors.endYear = "Start year must come before the end year.";
+    if(image.type !== "image/jpeg" && image.type !== "image/png")tempErrors.image = "Poster must be a JPEG, JPG, or PNG file."
+    if(banner.type !== "image/jpeg" && banner.type !== "image/png")tempErrors.banner = "Banner must be a JPEG, JPG, or PNG file."
+
 
     const tempErrorsArray = Object.values(tempErrors);
     if (tempErrorsArray.length > 0) {
       setErrors(tempErrors);
     } else {
+      setIsLoading(true)
       dispatch(thunkPostShow(newShow))
         .then((show) => {
           closeModal();
@@ -155,10 +160,12 @@ export default function AddShowModal() {
           Show poster
           <input type="file" multiple onChange={(e) => setImage(e.target.files[0])} required />
         </label>
+        <div className="errors">{errors.image}</div>
         <label>
           Banner image
           <input type="file" multiple onChange={(e) => setBanner(e.target.files[0])} required />
         </label>
+        <div className="errors">{errors.banner}</div>
         {isLoading && (
           <div
             style={{
@@ -177,7 +184,7 @@ export default function AddShowModal() {
             <LoadingSpinner />
           </div>
         )}
-        <button className="submit-button" type="submit" onClick={()=> setIsLoading(true)}>
+        <button className="submit-button" type="submit">
           Submit
         </button>
       </form>

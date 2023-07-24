@@ -51,6 +51,8 @@ export default function EditShowModal({ show }) {
 
     if (synopsis.length > 600) tempErrors.synopsis = "Synopsis must be less than 600 characters.";
     if (endYear && startYear > endYear) tempErrors.endYear = "Start year must come before the end year.";
+    if(image && image.type !== "image/jpeg" && image.type !== "image/png")tempErrors.image = "Poster must be a JPEG, JPG, or PNG file."
+    if(banner && banner.type !== "image/jpeg" && banner.type !== "image/png")tempErrors.banner = "Banner must be a JPEG, JPG, or PNG file."
 
     const tempErrorsArray = Object.values(tempErrors);
     if (tempErrorsArray.length > 0) {
@@ -60,6 +62,7 @@ export default function EditShowModal({ show }) {
       dispatch(thunkEditShow(updatedShow, show?.Show?.id))
         .then(() => {
           closeModal();
+          setIsLoading(false)
         })
         .catch((data) => {
           if (data && data.errors) {
@@ -161,10 +164,12 @@ export default function EditShowModal({ show }) {
           Show poster
           <input type="file" onChange={(e) => setImage(e.target.files[0])} />
         </label>
+        <div className="errors">{errors.image}</div>
         <label>
           Banner image
           <input type="file"  onChange={(e) => setBanner(e.target.files[0])}  />
         </label>
+        <div className="errors">{errors.banner}</div>
         {isLoading && (
           <div
             style={{
