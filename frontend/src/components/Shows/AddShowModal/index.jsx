@@ -79,7 +79,7 @@ export default function AddShowModal() {
   const genres = ["Drama", "Romance", "Family", "Horror", "Sitcom", "Reality TV"];
   return (
     <div className="add-show-modal">
-      <form onSubmit={handleSubmit}>
+      <form style={{position: "relative"}} onSubmit={handleSubmit}>
         <label style={{ margin: "0 70px" }}>
           Title
           <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
@@ -170,7 +170,7 @@ export default function AddShowModal() {
           <div
             style={{
               width: "389.6px",
-              height: "636px",
+              height: "100%",
               position: "absolute",
               zIndex: 5,
               display: "flex",
