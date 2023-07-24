@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../../context/Modal";
@@ -22,7 +22,6 @@ export default function AddShowModal() {
   const sessionUser = useSelector((state) => state.session.user);
   const [isLoading, setIsLoading] = useState(false);
 
-
   const characterCounter = () => {
     if (synopsis?.length > 600) {
       return { color: "red" };
@@ -38,7 +37,7 @@ export default function AddShowModal() {
       director,
       synopsis,
       startYear,
-      endYear: endYear === "Ongoing" ? null: endYear,
+      endYear: endYear === "Ongoing" ? null : endYear,
       genre,
       images: [image, banner],
       userId: sessionUser.id,
@@ -48,15 +47,16 @@ export default function AddShowModal() {
 
     if (synopsis.length > 600) tempErrors.synopsis = "Synopsis must be less than 600 characters.";
     if (endYear && startYear > endYear) tempErrors.endYear = "Start year must come before the end year.";
-    if(image.type !== "image/jpeg" && image.type !== "image/png")tempErrors.image = "Poster must be a JPEG, JPG, or PNG file."
-    if(banner.type !== "image/jpeg" && banner.type !== "image/png")tempErrors.banner = "Banner must be a JPEG, JPG, or PNG file."
-
+    if (image.type !== "image/jpeg" && image.type !== "image/png")
+      tempErrors.image = "Poster must be a JPEG, JPG, or PNG file.";
+    if (banner.type !== "image/jpeg" && banner.type !== "image/png")
+      tempErrors.banner = "Banner must be a JPEG, JPG, or PNG file.";
 
     const tempErrorsArray = Object.values(tempErrors);
     if (tempErrorsArray.length > 0) {
       setErrors(tempErrors);
     } else {
-      setIsLoading(true)
+      setIsLoading(true);
       dispatch(thunkPostShow(newShow))
         .then((show) => {
           closeModal();
@@ -141,8 +141,8 @@ export default function AddShowModal() {
               })}
             </select>
           </label>
-          <div className="errors">{errors.endYear}</div>
         </div>
+        <div className="errors">{errors.endYear}</div>
         <label>
           Genre
           <select required id="select" style={{ color: "black" }} onChange={(e) => setGenre(e.target.value)}>
@@ -176,9 +176,9 @@ export default function AddShowModal() {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              backgroundColor:" #12121280",
+              backgroundColor: " #12121280",
               flexDirection: "column",
-              gap: "10px"
+              gap: "10px",
             }}
           >
             <LoadingSpinner />

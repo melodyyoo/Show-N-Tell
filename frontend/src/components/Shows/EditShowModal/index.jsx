@@ -19,7 +19,7 @@ export default function EditShowModal({ show }) {
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
   const sessionUser = useSelector((state) => state.session.user);
-  const [isLoading , setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const characterCounter = () => {
     if (synopsis?.length > 600) {
@@ -34,7 +34,6 @@ export default function EditShowModal({ show }) {
     const filesArr = [];
     filesArr.push(image);
     filesArr.push(banner);
-
 
     const updatedShow = {
       name,
@@ -51,18 +50,20 @@ export default function EditShowModal({ show }) {
 
     if (synopsis.length > 600) tempErrors.synopsis = "Synopsis must be less than 600 characters.";
     if (endYear && startYear > endYear) tempErrors.endYear = "Start year must come before the end year.";
-    if(image && image.type !== "image/jpeg" && image.type !== "image/png")tempErrors.image = "Poster must be a JPEG, JPG, or PNG file."
-    if(banner && banner.type !== "image/jpeg" && banner.type !== "image/png")tempErrors.banner = "Banner must be a JPEG, JPG, or PNG file."
+    if (image && image.type !== "image/jpeg" && image.type !== "image/png")
+      tempErrors.image = "Poster must be a JPEG, JPG, or PNG file.";
+    if (banner && banner.type !== "image/jpeg" && banner.type !== "image/png")
+      tempErrors.banner = "Banner must be a JPEG, JPG, or PNG file.";
 
     const tempErrorsArray = Object.values(tempErrors);
     if (tempErrorsArray.length > 0) {
       setErrors(tempErrors);
     } else {
-      setIsLoading(true)
+      setIsLoading(true);
       dispatch(thunkEditShow(updatedShow, show?.Show?.id))
         .then(() => {
           closeModal();
-          setIsLoading(false)
+          setIsLoading(false);
         })
         .catch((data) => {
           if (data && data.errors) {
@@ -86,7 +87,7 @@ export default function EditShowModal({ show }) {
         </label>
         <label>
           Director
-          <input type="text" value={director} onChange={(e) => setDirector(e.target.value)}/>
+          <input type="text" value={director} onChange={(e) => setDirector(e.target.value)} />
         </label>
         <label htmlFor="synopsis" style={{ margin: "0 193px 0 0" }}>
           Synopsis
@@ -141,7 +142,7 @@ export default function EditShowModal({ show }) {
             </select>
           </label>
         </div>
-          <div className="errors">{errors.endYear}</div>
+        <div className="errors">{errors.endYear}</div>
         <label>
           Genre
           <select
@@ -167,7 +168,7 @@ export default function EditShowModal({ show }) {
         <div className="errors">{errors.image}</div>
         <label>
           Banner image
-          <input type="file"  onChange={(e) => setBanner(e.target.files[0])}  />
+          <input type="file" onChange={(e) => setBanner(e.target.files[0])} />
         </label>
         <div className="errors">{errors.banner}</div>
         {isLoading && (
@@ -180,21 +181,32 @@ export default function EditShowModal({ show }) {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              backgroundColor:" #12121280",
+              backgroundColor: " #12121280",
               flexDirection: "column",
-              gap: "20px"
+              gap: "20px",
             }}
           >
             <LoadingSpinner />
           </div>
         )}
         <div>
-          <button style={{cursor:"pointer"}} className="submit-button" type="submit">
+          <button style={{ cursor: "pointer" }} className="submit-button" type="submit">
             SAVE
           </button>
           <OpenModalButton
             buttonText="DELETE"
-            style={{cursor:"pointer", backgroundColor: "gray", borderRadius: "10px", width: "70px", height: "30px",fontFamily:"'Open Sans', sans-serif", fontSize:"13px", display: "flex", justifyContent:"center", alignItems:"center" }}
+            style={{
+              cursor: "pointer",
+              backgroundColor: "gray",
+              borderRadius: "10px",
+              width: "70px",
+              height: "30px",
+              fontFamily: "'Open Sans', sans-serif",
+              fontSize: "13px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
             modalComponent={<DeleteShowModal show={show} />}
             title="PLEASE CONFIRM"
           />
