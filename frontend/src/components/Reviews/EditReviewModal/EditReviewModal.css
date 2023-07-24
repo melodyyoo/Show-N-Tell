@@ -1,14 +1,14 @@
 .review-input-body{
     color:black;
     resize: none;
-    height: 180px;
-    width: 250px;
+    height: 100px;
+    width: 400px;
 }
 
 .show-poster{
-    height: 160px;
-    width: 125px;
-    margin-top: 28px;
+    height: 180px;
+    width: 140px;
+    margin-top: 2px;
     border-radius: 5px;
 }
 
@@ -17,7 +17,7 @@
     gap: 15px;
     width: 400px;
     justify-content: center;
-    margin: 20px 20px;
+    margin: 20px 100px;
 }
 
 .show-year{
@@ -31,5 +31,5 @@
 }
 
 .character-counter{
-    margin-top: 15px;
+    margin: 15px 0 0 350px;
 }

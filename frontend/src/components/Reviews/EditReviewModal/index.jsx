@@ -75,47 +75,58 @@ export default function EditReviewModal({ review }) {
   };
 
   return (
-    <div style={{display: "flex", flexDirection: "column", alignItems:"center"}}>
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
       <div className="review-input-wrapper" style={{ display: "flex" }}>
         <img className="show-poster" alt="show-poster" src={review.Show?.image}></img>
         <form className="edit-review-form" onSubmit={handleClick}>
-          <div style={{ display: "flex" }}>
-            {review.Show?.name}
-            {ongoingShow}
+          <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
+            <div style={{ display: "flex" }}>
+              <div className="show-name" style={{ fontSize: "20px" }}>
+                {review.Show?.name}
+              </div>
+              <div>{ongoingShow}</div>
+            </div>
+            <textarea
+              className="review-input-body"
+              value={body}
+              required
+              onChange={(e) => setBody(e.target.value)}
+            ></textarea>
           </div>
-          <textarea
-            className="review-input-body"
-            value={body}
-            required
-            onChange={(e) => setBody(e.target.value)}
-          ></textarea>
           <p className="character-counter" style={characterCounter()}>
             {body?.length}/600
           </p>
           <div className="errors">{errors.body}</div>
-          <div>
-            Rating
-            <ReviewRatingInput required disabled={false} rating={rating} onChange={onChange} />
+          <div style={{ display: "flex", flexDirection:"column", gap:"15px"}}>
+            <div style={{display:"flex", flexDirection:"column"}}>
+              <div style={{ fontFamily: "'Open Sans', sans-serif", fontSize: "15px", textAlign:"center" }}>Rating</div>
+              <ReviewRatingInput required disabled={false} rating={rating} onChange={onChange} />
+            </div>
+            <div style={{ display: "flex", gap: "5px" }}>
+              <button className="submit-button" type="submit">
+                SAVE
+              </button>
+              <OpenModalButton
+                style={{
+                  color: " white",
+                  border: "none",
+                  backgroundColor: "gray",
+                  fontFamily: "'Open Sans', sans-serif",
+                  width: "70px",
+                  borderRadius: "5px",
+                  height: "2rem",
+                  cursor: "pointer",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  fontSize: "12px",
+                }}
+                buttonText="DELETE"
+                modalComponent={<DeleteReviewModal />}
+                title="PLEASE CONFIRM"
+              />
+            </div>
           </div>
-          <button className="submit-button" type="submit">SAVE</button>
-      <OpenModalButton
-        style={{
-          color: " white",
-          border: "none",
-          backgroundColor: "gray",
-          fontFamily: "'Open Sans', sans-serif",
-          width: "90px",
-          borderRadius: "10px",
-          height: "30px",
-          cursor:"pointer",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center"
-        }}
-        buttonText="DELETE"
-        modalComponent={<DeleteReviewModal />}
-        title="PLEASE CONFIRM"
-      />
         </form>
       </div>
     </div>
