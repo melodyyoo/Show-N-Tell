@@ -20,11 +20,11 @@ export default function DeleteShowModal({ show }) {
         Are you sure you want to remove this show from Show 'N Tell's library? This will delete all associated
         likes and reviews.
       </p>
-      <div>
-        <button type="button" onClick={closeModal}>
+      <div style={{display:"flex", gap:"5px"}}>
+        <button className="cancel-button" type="button" onClick={closeModal}>
           CANCEL
         </button>
-        <button type="submit">DELETE</button>
+        <button className="delete-button" type="submit">DELETE</button>
       </div>
     </form>
   );
