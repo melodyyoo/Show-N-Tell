@@ -1,0 +1,23 @@
+.comment-box{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: #808080 1px solid;
+    padding: 20px 0;
+}
+
+.comment-menu{
+    font-size:25px;
+    padding:0;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 5px;
+    cursor:pointer;
+}
+.comment-menu:hover{
+    color:#808080;
+}
+
+.user-date-comment{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+}
