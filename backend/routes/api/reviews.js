@@ -31,7 +31,7 @@ router.get("/:reviewId", async (req, res) => {
   const review = await Review.findByPk(req.params.reviewId, {
     include: [
       { model: Show, attributes: ["name", "startYear", "endYear", "image"] },
-      { model: Comment },
+      { model: Comment , include:{model:User, attributes:['username']}},
       { model: ReviewLike },
       {model: User, attributes:["username"]}
     ],
@@ -134,5 +134,16 @@ router.delete('/:reviewId', requireAuth, async(req, res)=>{
   res.json({message: "Successfully deleted"})
 })
 
+// //get comments for a review
+// router.get('/:reviewId/comments', async(req,res)=>{
+//   const comments = await Comment.findAll({
+//     where: {
+//       reviewId: req.params.reviewId
+//     },
+//     include:[{model: User, attributes:['username']}]
+//   })
+
+//   res.json(comments)
+// })
 
 module.exports = router;
