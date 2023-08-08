@@ -5,6 +5,7 @@ import { thunkGetReview } from "../../../store/reviews";
 import { useParams } from "react-router-dom";
 import starIcons from "../../../hooks/starIcons";
 import "./SingleReviewPage.css";
+import AllComments from "../../Comments/AllComments";
 
 export default function SingleReviewPage() {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ export default function SingleReviewPage() {
   }
 
   return (
-    <SingleShowLayout showId={review.showId} reviewsOrComments={review.Comments}>
+    <SingleShowLayout showId={review.showId} reviewsOrComments={<AllComments comments={review?.Comments}/>}>
       <div>
         <p className="posted-by review-by">Review by {review.User?.username}</p>
         <div className="single-review-page-text">
