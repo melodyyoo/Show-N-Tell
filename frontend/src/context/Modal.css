@@ -34,13 +34,14 @@
   .modal-header{
     display:flex;
     justify-content: space-between;
-    margin: 10px 15px;
+    margin: 5px 15px;
   }
 
   .modal-header-title{
    font-family:'Open Sans', sans-serif;
-   margin-left: 50px;
+   margin-left: 10px;
    color: #778899;
+   margin-top: 15px;
   }
 
   .x-button{
