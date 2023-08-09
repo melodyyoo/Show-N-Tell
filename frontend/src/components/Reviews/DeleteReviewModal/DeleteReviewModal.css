@@ -6,5 +6,9 @@
     font-size: 12px;
     font-family: "Open Sans", sans-serif;
     background-color: #808080;
-    cursor:pointer; 
+    cursor:pointer;
+}
+
+.delete-button:hover{
+    background-color: red;
 }
