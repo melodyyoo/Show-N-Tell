@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
 import "./SingleComment.css";
+import CommentMenu from "../CommentMenu";
 
-export default function SingleComment({ comment }) {
+export default function SingleComment({ comment , reviewOwner}) {
   const sessionUser = useSelector((state) => state.session.user);
 
-  console.log("session user: ", sessionUser);
   function convertDate() {
     return new Date(comment.createdAt).toLocaleDateString("en-US", {
       month: "long",
@@ -14,7 +14,7 @@ export default function SingleComment({ comment }) {
   }
   return (
     <div>
-      {sessionUser.username === comment.User.username && <p className="comment-menu">...</p>}
+      {sessionUser.username === comment.User.username && <CommentMenu comment={comment} reviewOwner={reviewOwner}/>}
       <div className="comment-box">
         <div >
           <p className="user-date-comment" >{comment.User.username}</p>

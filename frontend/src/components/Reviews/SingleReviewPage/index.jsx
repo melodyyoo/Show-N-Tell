@@ -32,7 +32,7 @@ export default function SingleReviewPage() {
   }
 
   return (
-    <SingleShowLayout showId={review.showId} reviewsOrComments={<AllComments comments={review?.Comments}/>}>
+    <SingleShowLayout showId={review.showId} reviewsOrComments={<AllComments comments={review?.Comments} reviewOwner={review?.User.username}/>}>
       <div>
         <p className="posted-by review-by">Review by {review.User?.username}</p>
         <div className="single-review-page-text">
