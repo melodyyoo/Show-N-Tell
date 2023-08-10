@@ -134,16 +134,5 @@ router.delete('/:reviewId', requireAuth, async(req, res)=>{
   res.json({message: "Successfully deleted"})
 })
 
-// //get comments for a review
-// router.get('/:reviewId/comments', async(req,res)=>{
-//   const comments = await Comment.findAll({
-//     where: {
-//       reviewId: req.params.reviewId
-//     },
-//     include:[{model: User, attributes:['username']}]
-//   })
-
-//   res.json(comments)
-// })
 
 module.exports = router;
