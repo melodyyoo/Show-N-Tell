@@ -1,0 +1,24 @@
+.user-info {
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    background-color: #435666;
+    padding: 0px 10px 0px 10px;
+    margin: 40px 10px 0 0;
+    position: absolute;
+    top: 1px;
+    right:-8px;
+  }
+
+.comment-menu-button{
+    font-size:25px;
+    padding:0;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 5px;
+    cursor:pointer;
+}
+.comment-menu-button:hover{
+    color:#808080;
+}
