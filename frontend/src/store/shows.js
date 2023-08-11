@@ -193,11 +193,6 @@ const showsReducer = (state = initialState, action) => {
       });
       return allShowsState;
 
-    // case GET_SHOW:
-    //     const showState = {...state, show:{}};
-    //     showState.show = action.payload;
-
-    //     return showState;
     case GET_SHOW_AND_REVIEWS:
       const showAndReviewState = { ...state, show: {} };
       showAndReviewState.show = action.payload;
@@ -215,11 +210,6 @@ const showsReducer = (state = initialState, action) => {
       const currentAllShows = { ...state.allShows };
       delete currentAllShows[action.payload];
       return { ...state, allShows: currentAllShows };
-    // case DELETE_REVIEW:
-    // const newAllShows = {...state.allShows}
-    // const showId = action.payload.showId
-    // newAllShows[showId].Reviews = newAllShows[showId].Reviews.filter(review=> review.id !== action.payload.reviewId)
-    // return {show:state.show, allShows:newAllShows};
     default:
       return state;
   }
