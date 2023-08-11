@@ -1,6 +1,7 @@
+import CommentForm from "../CommentForm";
 import SingleComment from "../SingleComment";
 
-export default function AllComments({ comments, reviewOwner }) {
+export default function AllComments({ comments, reviewOwner, reviewId }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
       <div style={{width:"600px"}}>
@@ -14,8 +15,9 @@ export default function AllComments({ comments, reviewOwner }) {
           {comments.length} Comments
         </p>
         {comments.map((comment) => {
-          return <SingleComment reviewOwner={reviewOwner} comment={comment} key={comment.id} />;
+          return <SingleComment reviewId={reviewId} reviewOwner={reviewOwner} comment={comment} key={comment.id} />;
         })}
+        <CommentForm reviewId={reviewId} reviewOwner={reviewOwner} formType="post"/>
       </div>
     </div>
   );

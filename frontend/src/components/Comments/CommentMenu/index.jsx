@@ -4,7 +4,7 @@ import OpenModalButton from "../../OpenModalButton";
 import CommentForm from "../CommentForm";
 import DeleteCommentForm from "../DeleteCommentForm";
 
-export default function CommentMenu({ reviewOwner , comment}) {
+export default function CommentMenu({ reviewOwner , comment, reviewId}) {
   const ulRef = useRef();
   const [showMenu, setShowMenu] = useState(false);
 
@@ -45,7 +45,7 @@ export default function CommentMenu({ reviewOwner , comment}) {
             }}
             buttonText="Edit Comment"
             title="EDIT YOUR COMMENT"
-            modalComponent={<CommentForm reviewOwner={reviewOwner} comment={comment}/>}
+            modalComponent={<CommentForm formType="edit" reviewId={reviewId} reviewOwner={reviewOwner} comment={comment}/>}
           />
           <OpenModalButton
             style={{
@@ -57,7 +57,7 @@ export default function CommentMenu({ reviewOwner , comment}) {
             }}
             buttonText="Delete Comment"
             title="PLEASE CONFIRM"
-            modalComponent={<DeleteCommentForm />}
+            modalComponent={<DeleteCommentForm reviewId={reviewId} />}
           />
         </div>
       )}

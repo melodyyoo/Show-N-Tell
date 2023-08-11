@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import "./SingleComment.css";
 import CommentMenu from "../CommentMenu";
 
-export default function SingleComment({ comment , reviewOwner}) {
+export default function SingleComment({ comment , reviewOwner, reviewId}) {
   const sessionUser = useSelector((state) => state.session.user);
 
   function convertDate() {
@@ -14,10 +14,10 @@ export default function SingleComment({ comment , reviewOwner}) {
   }
   return (
     <div>
-      {sessionUser.username === comment.User.username && <CommentMenu comment={comment} reviewOwner={reviewOwner}/>}
+      {sessionUser?.username === comment?.User?.username && <CommentMenu comment={comment} reviewOwner={reviewOwner} reviewId={reviewId}/>}
       <div className="comment-box">
-        <div >
-          <p className="user-date-comment" >{comment.User.username}</p>
+        <div>
+          <p className="user-date-comment" >{comment?.User?.username}</p>
           <p className="user-date-comment">{convertDate()}</p>
         </div>
         <div style={{ width: "350px" }}>{comment.body}</div>
