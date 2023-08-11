@@ -39,6 +39,7 @@ router.put('/:commentId', requireAuth, async(req,res)=>{
     }
 
     const {body, userId, reviewId} = req.body;
+    const user = await User.findByPk(userId)
 
     const error = {message: "Bad Request", errors:{}};
     if(body.length > 200)error.errors.body = "Comment must be 200 characters or less.";
@@ -54,7 +55,7 @@ router.put('/:commentId', requireAuth, async(req,res)=>{
         userId
     });
     await comment.save();
-    res.json(comment)
+    res.json({...comment.toJSON(), User: {username: `${user.username}`}})
 })
 
 //delete a comment
