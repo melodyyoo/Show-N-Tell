@@ -4,15 +4,13 @@ import sessionReducer from "./session";
 import showsReducer from "./shows"
 import reviewsReducer from "./reviews";
 import userReducer from "./user";
-import commentsReducer from "./comments";
 
 const rootReducer = combineReducers({
   // add reducer functions here
   session: sessionReducer,
   shows: showsReducer,
   reviews: reviewsReducer,
-  user: userReducer,
-  comments: commentsReducer
+  user: userReducer
 });
 
 let enhancer;
