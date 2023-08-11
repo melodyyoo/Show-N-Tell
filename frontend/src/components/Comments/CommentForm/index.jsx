@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useModal } from "../../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
-import { thunkPostComment } from "../../../store/reviews";
-import { thunkEditComment } from "../../../store/comments";
+import { thunkEditComment, thunkPostComment } from "../../../store/reviews";
 
 export default function CommentForm({ reviewOwner, comment, formType , reviewId}) {
   const { closeModal } = useModal();
