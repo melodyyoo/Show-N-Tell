@@ -46,7 +46,7 @@ router.post("/", requireAuth, async (req, res) => {
 
   const error = { message: "Bad Request", errors: {} };
 
-  if(body.length > 600)error.errors.body = "Review must be less than 600 characters."
+  if(body.length > 600)error.errors.body = "Review must be 600 characters or less."
   if (!rating || typeof rating !== "number" || rating < 1 || rating > 5) {
     error.errors.rating = "Rating must be an integer from 1 to 5";
   }
@@ -93,7 +93,7 @@ router.put("/:reviewId", requireAuth, async(req, res)=>{
   const {body, rating, userId, showId} = req.body;
 
   const error = {message: "Bad Request", errors: {}};
-  if(body.length > 600)error.errors.body = "Review must be less than 600 characters."
+  if(body.length > 600)error.errors.body = "Review must be 600 characters or less."
   if (!rating || typeof rating !== "number" || rating < 1 || rating > 5) {
     error.errors.rating = "Rating must be an integer from 1 to 5";
   }
