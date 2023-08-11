@@ -17,7 +17,6 @@ export default function SingleReviewPage() {
   }, [dispatch, reviewId]);
 
   if (!review?.id || review.id !== parseInt(reviewId)) return null;
-  if(!review)return null;
 
   let ongoingShow;
   if (!review.Show?.endYear) {
@@ -32,9 +31,9 @@ export default function SingleReviewPage() {
     );
   }
 
-  if(!review)return null; 
+  if(!review)return null;
   return (
-    <SingleShowLayout showId={review.showId} reviewsOrComments={<AllComments comments={review.Comments} reviewOwner={review.User.username} reviewId={review.id}/>}>
+    <SingleShowLayout showId={review.showId} reviewsOrComments={<AllComments comments={review.Comments} reviewOwner={review.User?.username} reviewId={review.id}/>}>
       <div>
         <p className="posted-by review-by">Review by {review.User?.username}</p>
         <div className="single-review-page-text">
