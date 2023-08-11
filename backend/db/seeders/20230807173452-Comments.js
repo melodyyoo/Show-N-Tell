@@ -89,7 +89,7 @@ module.exports = {
       userId: 6
     },
     {
-      body: "Succession returned for a darkly funny, whip-smart, and brilliantly performed second run that leaves us begging for more and assured that the show is the best thing on television. Treachery has rarely felt so good.",
+      body: "Succession returned for a darkly funny, whip-smart, and brilliantly performed second run that leaves us begging for more and assured that the show is the best thing on television.",
       reviewId: 8,
       userId: 3
     },
