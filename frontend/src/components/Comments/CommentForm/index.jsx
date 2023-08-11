@@ -3,12 +3,12 @@ import { useModal } from "../../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkEditComment, thunkPostComment } from "../../../store/reviews";
 
-export default function CommentForm({ reviewOwner, comment, formType , reviewId}) {
+export default function CommentForm({ reviewOwner, comment, formType, reviewId }) {
   const { closeModal } = useModal();
-  const [body, setBody] = useState(formType==="edit" ? comment.body: "");
+  const [body, setBody] = useState(formType === "edit" ? comment.body : "");
   const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state)=> state.session.user);
+  const sessionUser = useSelector((state) => state.session.user);
   const commentId = comment?.id;
 
   const handleClick = (e) => {
@@ -17,43 +17,54 @@ export default function CommentForm({ reviewOwner, comment, formType , reviewId}
 
     const tempErrors = {};
 
-    if(body?.length > 200)tempErrors.body = 'Comment must be 200 characters or less.'
+    if (body?.length > 200) tempErrors.body = "Comment must be 200 characters or less.";
 
     const comment = {
-        body,
-        reviewId,
-        userId: sessionUser.id
-    }
+      body,
+      reviewId,
+      userId: sessionUser.id,
+    };
 
     const tempErrorsArray = Object.values(tempErrors);
-    if(tempErrorsArray.length > 0){
-        setErrors(tempErrors)
-    }else if(formType==="edit"){
-        dispatch(thunkEditComment(comment, commentId))
+    if (tempErrorsArray.length > 0) {
+      setErrors(tempErrors);
+    } else if (formType === "edit") {
+      dispatch(thunkEditComment(comment, commentId))
         .then(closeModal)
-        .catch((data)=> {
-            if(data && data.errors){
-                setErrors({...data.errors, ...errors})
-            }
-        })
-    }else{
-        dispatch(thunkPostComment(comment))
-        .then(setBody(''))
-        .catch((data)=> {
-            if(data && data.errors){
-                setErrors({...data.errors, ...errors})
-            }
-        })
+        .catch((data) => {
+          if (data && data.errors) {
+            setErrors({ ...data.errors, ...errors });
+          }
+        });
+    } else {
+      dispatch(thunkPostComment(comment))
+        .then(setBody(""))
+        .catch((data) => {
+          if (data && data.errors) {
+            setErrors({ ...data.errors, ...errors });
+          }
+        });
     }
   };
   return (
     <form onSubmit={handleClick}>
-      <textarea
-        placeholder={`Reply to ${reviewOwner}...`}
-        style={{ color: "black", resize: "none", width: "400px", height: "106px", margin: "0 25px" }}
-        onChange={(e) => setBody(e.target.value)}
-        value={body}
-      />
+      {formType === "edit" ? (
+        <textarea
+          placeholder={`Reply to ${reviewOwner}...`}
+          style={{ color: "black", resize: "none", width: "400px", height: "106px", margin: "0 25px" }}
+          onChange={(e) => setBody(e.target.value)}
+          value={body}
+        />
+      ) : (
+        <div style={{ display: "flex", justifyContent: "flex-end", width: "100%" }}>
+          <textarea
+            placeholder={`Reply to ${reviewOwner}...`}
+            style={{ color: "black", resize: "none", width: "400px", height: "106px", marginTop: "20px" }}
+            onChange={(e) => setBody(e.target.value)}
+            value={body}
+          />
+        </div>
+      )}
       <div style={{ width: "100%", display: "flex", justifyContent: "flex-end", marginRight: "52px" }}>
         <p
           className="review-character-counter"
@@ -64,10 +75,18 @@ export default function CommentForm({ reviewOwner, comment, formType , reviewId}
       </div>
       <div className="errors">{errors.body}</div>
       <div style={{ display: "flex", justifyContent: "center", gap: "5px" }}>
-       {formType==='edit' && <button onClick={closeModal} className="cancel-button">
-          CANCEL
-        </button>}
-        <button className="submit-button">{formType==='edit' ? "UPDATE" : "POST"}</button>
+        {formType === "edit" && (
+          <button onClick={closeModal} className="cancel-button">
+            CANCEL
+          </button>
+        )}
+        {formType === 'edit' ?
+            <button className="submit-button">UPDATE</button>
+          :
+          <div style={{display: 'flex', justifyContent:"flex-end", width:"600px"}}>
+             <button className="submit-button">POST</button>
+          </div>
+        }
       </div>
     </form>
   );
