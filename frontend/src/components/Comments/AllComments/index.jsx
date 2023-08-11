@@ -13,7 +13,7 @@ export default function AllComments({ comments, reviewOwner, reviewId }) {
             borderBottom: "#808080 1px solid",
           }}
         >
-          {comments?.length} Comments
+          {comments.length === 1 ? `${comments.length} Comment` : `${comments?.length} Comments`}
         </p>
         {comments.map((comment) => {
           return <SingleComment reviewId={reviewId} reviewOwner={reviewOwner} comment={comment} key={comment.id} />;
