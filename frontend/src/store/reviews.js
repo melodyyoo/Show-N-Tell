@@ -5,6 +5,11 @@ const GET_REVIEW = "reviews/getReview";
 const POST_REVIEW = "reviews/postReview";
 const EDIT_REVIEW = "reviews/editReview";
 
+
+const POST_COMMENT = 'comments/postComment';
+
+
+
 /*********************************************************************************************************** */
 //ACTION CREATORS
 const actionGetPopularReviews = (reviews) => {
@@ -35,6 +40,13 @@ const actionEditReview = (review) => {
   };
 };
 
+
+const actionPostComment = (comment) =>{
+  return {
+      type: POST_COMMENT,
+      payload: comment
+  }
+}
 
 /*********************************************************************************************************** */
 //THUNKS
@@ -91,6 +103,23 @@ export const thunkEditReview = (review, reviewId) => async (dispatch) => {
 };
 
 
+export const thunkPostComment = (comment) => async(dispatch)=>{
+  const res = await csrfFetch("/api/comments", {
+      method:"POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(comment)
+  });
+
+  if(res.ok){
+      const newComment = await res.json();
+      dispatch(actionPostComment(newComment));
+      return newComment;
+  }else{
+      const errors = await res.json();
+      return errors;
+  }
+}
+
 
 /*********************************************************************************************************** */
 //REDUCER
@@ -118,7 +147,10 @@ const reviewsReducer = (state = initialState, action) => {
         editReviewState.review = action.payload;
         return editReviewState;
 
-
+    case POST_COMMENT:
+      const postCommentState = {...state, review:{...state.review}}
+      postCommentState.review.Comments = [...state.review.Comments, action.payload]
+      return postCommentState;
     default:
       return state;
   }
