@@ -18,13 +18,6 @@ const actionGetAllShows = (shows) => {
   };
 };
 
-// const actionGetShow = (show) =>{
-//     return{
-//         type: GET_SHOW,
-//         payload: show
-//     }
-// }
-
 const actionGetShowAndReviews = (show) => {
   return {
     type: GET_SHOW_AND_REVIEWS,
@@ -71,14 +64,6 @@ export const thunkGetAllShows = () => async (dispatch) => {
   }
 };
 
-// export const thunkGetShow = (showId) => async(dispatch) =>{
-//     const res = await csrfFetch(`/api/shows/${showId}`);
-
-//     if(res.ok){
-//         const data = await res.json();
-//         dispatch(actionGetShow(data));
-//     }
-// }
 
 export const thunkGetShowAndReview = (showId) => async (dispatch) => {
   const res = await csrfFetch(`/api/shows/${showId}`);
