@@ -57,7 +57,7 @@ export default function CommentMenu({ reviewOwner , comment, reviewId}) {
             }}
             buttonText="Delete Comment"
             title="PLEASE CONFIRM"
-            modalComponent={<DeleteCommentForm reviewId={reviewId} />}
+            modalComponent={<DeleteCommentForm comment={comment} reviewId={reviewId} />}
           />
         </div>
       )}
