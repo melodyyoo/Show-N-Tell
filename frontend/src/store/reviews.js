@@ -157,7 +157,7 @@ export const thunkEditComment = (comment, commentId) => async (dispatch) => {
     });
 
     if(res.ok){
-        dispatch(actionDeleteComment())
+        dispatch(actionDeleteComment(commentId))
     }
   }
 
@@ -201,6 +201,11 @@ const reviewsReducer = (state = initialState, action) => {
         }
       }
       return editCommentState;
+    case DELETE_COMMENT:
+      return{
+        popularReviews: {...state.popularReviews},
+        review: {...state.review, ReviewLikes:[...state.review.ReviewLikes], Show:{...state.review.Show}, User:{...state.review.User}, Comments:state.review.Comments.filter((comment)=> comment.id !== action.payload)}
+      }
     default:
       return state;
   }
