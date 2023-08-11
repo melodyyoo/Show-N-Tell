@@ -32,6 +32,7 @@ export default function AddReviewModal() {
     const tempErrors = {};
 
     if (body.length > 600) tempErrors.body = "Review must be 600 characters or less.";
+    if(!rating)tempErrors.rating = "A rating is required.";
 
     const newReview = {
       body,
@@ -79,30 +80,34 @@ export default function AddReviewModal() {
       <div className="review-input-wrapper" style={{ display: "flex" }}>
         <img className="show-poster" alt="show-poster" src={show.Show?.image}></img>
         <form className="add-review-form" onSubmit={handleClick}>
-        <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
-          <div style={{ display: "flex" }}>
-
-            <div className="show-name" style={{fontSize:"20px"}}>{show.Show?.name}</div>
-            <div>{ongoingShow}</div>
-          </div>
-          <textarea
-            className="review-input-body"
-            required
-            onChange={(e) => setBody(e.target.value)}
-          ></textarea>
+          <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
+            <div style={{ display: "flex" }}>
+              <div className="show-name" style={{ fontSize: "20px" }}>
+                {show.Show?.name}
+              </div>
+              <div>{ongoingShow}</div>
+            </div>
+            <textarea
+              className="review-input-body"
+              required
+              onChange={(e) => setBody(e.target.value)}
+            ></textarea>
           </div>
           <p className="review-character-counter" style={characterCounter()}>
             {body.length}/600
           </p>
           <div className="errors">{errors.body}</div>
-          <div style={{ display: "flex", flexDirection:"column", gap:"15px"}}>
-          <div style={{display:"flex", flexDirection:"column"}}>
-            <div style={{ fontFamily: "'Open Sans', sans-serif", fontSize: "15px", textAlign:"center" }}>Rating</div>
-            <ReviewRatingInput required disabled={false} rating={rating} onChange={onChange} />
-          </div>
-          <button className="submit-button" style={{ cursor: "pointer" }} type="submit">
-            SAVE
-          </button>
+          <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <div style={{ fontFamily: "'Open Sans', sans-serif", fontSize: "15px", textAlign: "center" }}>
+                Rating
+              </div>
+              <ReviewRatingInput required disabled={false} rating={rating} onChange={onChange} />
+            </div>
+            <div className="errors">{errors.rating}</div>
+            <button className="submit-button" style={{ cursor: "pointer" }} type="submit">
+              SAVE
+            </button>
           </div>
         </form>
       </div>
