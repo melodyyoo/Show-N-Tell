@@ -18,3 +18,8 @@ Check out Show 'N Tell [here](https://show-n-tell.onrender.com/)!
 ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
 ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
 
+## Shows
+![shows-gif](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTR1cHc0YzZscDEydzRqY3BkaHY1Mzg3czhyMmE2am51eG4waGZuNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/AdWUhqxv1JycWVSZEI/giphy.gif)
+
+## Reviews
+![reviews-gif](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExb2ZjemJqZDE5MTQ3Z2R5aGxudGNxYzVoaGF0aHV5aGRvaGd3c3FnYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Du9OWlkMkQM7LDasKa/giphy.gif)
