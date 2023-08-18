@@ -23,3 +23,27 @@ Check out Show 'N Tell [here](https://show-n-tell.onrender.com/)!
 
 ## Reviews
 ![reviews-gif](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExb2ZjemJqZDE5MTQ3Z2R5aGxudGNxYzVoaGF0aHV5aGRvaGd3c3FnYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Du9OWlkMkQM7LDasKa/giphy.gif)
+
+## Getting started
+
+1. Clone this repository: https://github.com/melodyyoo/Show-N-Tell
+2. Install denpendencies into the Backed and the Frontend by making a terminal for each one and then run the following:
+   * backend (In base of directory):
+       * ` Pipenv install `
+   * frontend :
+       * ` npm install `
+3. Create a .env file using the .envexample provided
+
+4. Set up your database with information from your .env and then run the following to create your database, migrate, and seed (base directory):
+   * ` Pipenv shell `
+   * ` flask db init `
+   * ` flask db migrate `
+   * ` flask db upgrade `
+   * ` flask seed all `
+5. Start the app for both backend and frontend using:
+   * backend :
+       * ` npm start`
+   * frontend :
+       * ` npm start `
+## Amazon Web Services S3
+   * For setting up your AWS refer to this [guide](https://github.com/jdrichardsappacad/aws-s3-pern-demo)
