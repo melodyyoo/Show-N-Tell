@@ -47,3 +47,22 @@ Check out Show 'N Tell [here](https://show-n-tell.onrender.com/)!
        * ` npm start `
 ## Amazon Web Services S3
    * For setting up your AWS refer to this [guide](https://github.com/jdrichardsappacad/aws-s3-pern-demo)
+
+## Features
+### Shows
+   * Users can create a show
+   * Users can update their shows
+   * Users can delete their shows
+### Reviews
+   * Users can create a review
+   * Users can update their reviews
+   * Users can delete their reviews
+### Comments
+   * Users can comment on individual reviews
+   * Users can update comments
+   * Users can delete their comments
+
+## Future Features
+   * Profiles
+   * Search/Filter
+   * Socket.io
