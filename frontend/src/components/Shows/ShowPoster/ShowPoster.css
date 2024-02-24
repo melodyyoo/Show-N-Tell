@@ -1,29 +1,29 @@
-.poster-wrapper{
-    display: flex;
-    flex-direction: column;
+.poster-wrapper {
+  display: flex;
+  flex-direction: column;
 }
 
-.poster{
-    height: 350px;
-    width: 180px;
-    border-radius: 5px;
-    cursor: pointer;
+.poster {
+  height: 350px;
+  width: 180px;
+  border-radius: 5px;
+  cursor: grab;
 }
 
-.poster:hover{
-    border: 3px rgb(2, 181, 2) solid;
+.poster:hover {
+  border: 3px rgb(2, 181, 2) solid;
 }
 
-.poster-stats{
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin-top: 5px;
+.poster-stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 5px;
 }
 
-.poster-count{
-    position: relative;
-    top: -5px;
-    color:gray;
-    margin-left: 3px;
+.poster-count {
+  position: relative;
+  top: -5px;
+  color: gray;
+  margin-left: 3px;
 }
